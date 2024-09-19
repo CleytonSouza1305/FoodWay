@@ -1,0 +1,72 @@
+:root {
+  --light-red: #ff4c4c;
+  --light-gray: #c9c9c9;
+  --light-white: #fff;
+  --medio-gray: #b8b8b8;
+  --light-black: #333;
+
+  --black-gray: #1f1f1f;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  color: var(--light-black);
+  background-color: var(--light-white);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  background-color: var(--light-black);
+  color: var(--light-white);
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem 1rem;
+}
+
+.input-group {
+  width: 200px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.5rem 0;
+}
+
+.input-group label {
+   font-weight: 600;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.submit-div-button {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.submit-div-button button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: var(--light-red);
+  color: var(--light-white);
+  font-size: 1.1rem;
+  width: 100%;
+}
