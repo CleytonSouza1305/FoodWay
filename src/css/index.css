@@ -1,11 +1,12 @@
 :root {
   --light-red: #ff4c4c;
-  --light-gray: #c9c9c9;
+  --light-gray: #dbdbdb;
   --light-white: #fff;
   --medio-gray: #b8b8b8;
   --light-black: #333;
 
   --black-gray: #1f1f1f;
+  --animeted-variable: ease-in-out 200ms;
 }
 
 main {
@@ -31,6 +32,25 @@ form {
 
 }
 
+.logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0 1rem;
+}
+
+.logo img {
+  width: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--animeted-variable);
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
 .inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,12 +69,19 @@ form {
    font-weight: 600;
 }
 
+.input-group input:hover,
+.input-group input:focus {
+  background-color: var(--light-gray);
+}
+
 .input-group input {
   width: 100%;
   padding: 6px 12px;
   border-radius: 4px;
   font-weight: 500;
   font-size: 1.1rem;
+  border: 3px solid transparent;
+  transition: var(--animeted-variable);
 }
 
 .submit-div-button {
@@ -69,4 +96,10 @@ form {
   color: var(--light-white);
   font-size: 1.1rem;
   width: 100%;
+  transition: var(--animeted-variable);
+}
+
+.submit-div-button button:hover {
+  background-color: hsl(0, 88%, 34%);
+  border: 2px solid rgb(160, 10, 10);
 }
