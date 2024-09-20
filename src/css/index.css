@@ -1,5 +1,5 @@
 :root {
-  --light-red: #ff4c4c;
+  --light-red: #ff3737;
   --light-gray: #dbdbdb;
   --light-white: #fff;
   --medio-gray: #b8b8b8;
@@ -86,7 +86,6 @@ form {
 
 .submit-div-button {
   width: 100%;
-  margin-top: 2rem;
 }
 
 .submit-div-button button {
@@ -100,6 +99,41 @@ form {
 }
 
 .submit-div-button button:hover {
-  background-color: hsl(0, 88%, 34%);
+  background-color: hsl(0, 89%, 38%);
   border: 2px solid rgb(160, 10, 10);
+}
+
+.have-account-div {
+  margin: 1rem 0;
+  font-size: 14px;
+}
+
+.have-account-div span {
+  color: rgb(70, 177, 249);
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--animeted-variable);
+}
+
+.have-account-div span:hover {
+  color: hwb(204 22% 24%);
+}
+
+.infos-validate {
+  margin-top: 0.5rem;
+}
+
+.infos-validate p {
+  color: var(--light-gray);
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.button-question {
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.display {
+  display: none;
 }
