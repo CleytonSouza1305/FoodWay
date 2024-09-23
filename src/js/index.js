@@ -16,38 +16,40 @@ async function validateForm() {
   const emailInput = document.getElementById('email')
   const passwordInput = document.getElementById('password')
 
+  const infoValidateDiv = document.querySelector('.infos-validate')
+
+  const loader = document.querySelector('.content-loader');
+
+loader.classList.remove('display');
+
+setTimeout(() => {
+  loader.classList.add('display');
+
   if (name && email && password && confirmPassword) {
-    const infoValidateDiv = document.querySelector('.infos-validate')
-    infoValidateDiv.classList.remove('display')
+    let userFounded = false;
 
-    const loader = document.querySelector('.loader');
-    loader.classList.remove('display')
-
-    let userFounded = false
     users.forEach((u) => {
       if (u.name === nameInput.value && u.email === emailInput.value && u.password === passwordInput.value) {
-        userFounded = true
+        console.log(u);
+        userFounded = true;
       }
-    })
-
-    loader.classList.add('display')
+    });
 
     if (userFounded) {
-      location.href = '../pages/home.html'
+      location.href = '../src/pages/home.html'; 
     } else {
-      // chamar a função de criar uma conta
+      createAccount()
     }
-
   } else {
-    const infoValidateDiv = document.querySelector('.infos-validate')
     infoValidateDiv.classList.remove('display')
-    const textContentInfos = document.querySelector('.info-p')
-    textContentInfos.classList.add('color-erro')
+    const text = document.querySelector('.info-p')
+    text.classList.add('color-erro')
 
     setTimeout(() => {
-      textContentInfos.classList.remove('color-erro')
-    }, 1000 * 1)
+      text.classList.remove('color-erro')
+    }, 2 * 1000);
   }
+}, 1000 * 2)
 }
 
 const form = document.querySelector('form')
@@ -64,3 +66,34 @@ addEventListener('keypress', (event) => {
     validateForm()
   }
 })
+
+async function createAccount() {
+  const infoValidateDiv = document.querySelector('.infos-validate')
+  infoValidateDiv.classList.add('display')
+
+  const nameInput = document.getElementById('name')
+  const emailInput = document.getElementById('email')
+  const passwordnput = document.getElementById('password')
+  const phonenput = document.getElementById('phone')
+  const addressInput = document.getElementById('address')
+  const numberInput = document.getElementById('address-number')
+
+  const users = await callApiUsers()
+  const lastUser = users[users.lenght - 1]
+  parseFloat(lastUser)
+
+  const newUser = {
+    id: lastUser + 1,
+    name: nameInput.value,
+    email: emailInput.value,
+    password: passwordnput.value,
+    phone: phonenput.value,
+    profilePicture: "",
+    address: [{ street: addressInput, houseNumber: numberInput }],
+    paymentMethods: [],
+    favorites: [],
+    orderHistory: []
+  }
+
+  console.log(newUser);
+}
