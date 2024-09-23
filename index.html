@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="./src/css/global.css">
   <link rel="stylesheet" href="./src/css/index.css">
+  <link rel="stylesheet" href="./src/css/loader.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,39 +36,63 @@
             <label for="password">Senha:</label>
             <input type="password" id="password">
           </div>
-          <div class="input-group">
+          <div class="input-group display">
             <label for="phone">Telefone:</label>
             <input type="text" id="phone">
           </div>
-          <div class="input-group">
+          <div class="input-group display">
             <label for="address">Endereço:</label>
             <input type="text" id="address">
           </div>
-          <div class="input-group">
+          <div class="input-group display">
             <label for="address-number">N°:</label>
             <input type="text" id="address-number">
           </div>
-          <div class="input-group display">
+          <div class="input-group">
             <label for="confirm-password">Confirme a senha:</label>
             <input type="password" id="confirm-password">
           </div>
         </div>
 
         <div class="have-account-div">
-          <p>Possui uma conta? <span id="have-account">Entrar!</span></p>
+          <p>Não possui uma conta? <span id="have-account">Criar conta!</span></p>
         </div>
   
         <div class="submit-div-button">
-          <button type="submit" id="submit-btn">Criar conta</button>
+          <button type="submit" id="submit-btn">Entrar</button>
         </div>
 
         <div class="infos-validate display">
-          <p>Todos os campos precisam estar preenchidos <br> da maneira correta 
-            <span class="button-question"><i class="fa-regular fa-circle-question"></i></span>
+          <p class="info-p">
+            Todos os campos precisam estar preenchidos <br> da maneira correta 
+            <span class="button-question" style="position: relative; display: inline-block;">
+              <i class="fa-regular fa-circle-question"></i>
+              <span class="tooltip">
+              O campo "Nome" deve conter mais de 3 caracteres <br><br>
+
+              O campo "Email" deve conter '@' e '.com' <br><br>
+
+              O campo "Senha" deve conter pelo menos 1 letra maiúscula e um caracter especial - (@#$%&)
+            </span>
+            </span>
           </p>
         </div>
       </form>
     </div>
   </main>
+
+
+<div class="dad-div">
+  <div class="loader">
+      <div id="first">
+          <div id="second">
+              <div id="third">
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <script type="module" src="./src/js/index.js"></script>
 </body>
 </html>

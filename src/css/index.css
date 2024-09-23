@@ -54,7 +54,7 @@ form {
 .inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.7rem 1rem;
+  gap: 1rem;
 }
 
 .input-group {
@@ -74,7 +74,7 @@ form {
   background-color: var(--light-gray);
 }
 
-.input-group input {
+input {
   width: 100%;
   padding: 6px 12px;
   border-radius: 4px;
@@ -109,21 +109,21 @@ form {
 }
 
 .have-account-div span {
-  color: rgb(70, 177, 249);
+  color: rgb(62, 170, 242);
   font-weight: 700;
   cursor: pointer;
   transition: var(--animeted-variable);
 }
 
 .have-account-div span:hover {
-  color: hwb(204 22% 24%);
+  color: #5cbbfb;
 }
 
 .infos-validate {
   margin-top: 0.5rem;
 }
 
-.infos-validate p {
+.infos-p {
   color: var(--light-gray);
   line-height: 20px;
   font-size: 14px;
@@ -136,4 +136,41 @@ form {
 
 .display {
   display: none;
+}
+
+.true {
+  border-color: rgb(31, 232, 51);
+  transition: var(--animeted-variable);
+}
+
+.false {
+  border-color: #EA1D2C;
+  transition: var(--animeted-variable);
+}
+
+.color-erro {
+  color: #EA1D2C;
+  transition: var(--animeted-variable);
+}
+
+.button-question .tooltip {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 50%;
+  margin-left: -60px; 
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-question:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
