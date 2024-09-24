@@ -99,27 +99,27 @@ async function createAccount() {
   const address = validateAddress('address')
   const houseNumber = validateHouseNumber('address-number')
 
-  if (name && email && password && phone && address, houseNumber) {
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(phone);
-    console.log(address);
-    console.log(houseNumber);
-    
-    console.log('criar conta e redirecionar');
-  } else {
-    console.log('erro');
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(phone);
-    console.log(address);
-    console.log(houseNumber);
-  }
-
   document.getElementById('submit-btn').addEventListener('click', (ev) => {
     ev.preventDefault()
+
+    if (name && email && password && phone && address, houseNumber) {
+      console.log(name);
+      console.log(email);
+      console.log(password);
+      console.log(phone);
+      console.log(address);
+      console.log(houseNumber);
+      
+      console.log('criar conta e redirecionar');
+    } else {
+      console.log('erro');
+      console.log(name);
+      console.log(email);
+      console.log(password);
+      console.log(phone);
+      console.log(address);
+      console.log(houseNumber);
+    }
 
     const newUser = {
       id: lastUser + 1,
