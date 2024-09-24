@@ -1,4 +1,4 @@
-import { validateConfirmPassword, validateEmail, validateName, validatePassword } from "./regexs.js";
+import { validateAddress, validateConfirmPassword, validateEmail, validateHouseNumber, validateName, validatePassword, validatePhone } from "./regexs.js";
 
 async function callApiUsers() {
   return await fetch(`http://localhost:3000/users`).then((r) => r.json())
@@ -37,9 +37,8 @@ setTimeout(() => {
 
     if (userFounded) {
       location.href = '../src/pages/home.html'; 
-    } else {
-      createAccount()
-    }
+    } 
+
   } else {
     infoValidateDiv.classList.remove('display')
     const text = document.querySelector('.info-p')
@@ -71,29 +70,74 @@ async function createAccount() {
   const infoValidateDiv = document.querySelector('.infos-validate')
   infoValidateDiv.classList.add('display')
 
+  createAccountBtn.textContent = 'Criar conta'
+
   const nameInput = document.getElementById('name')
   const emailInput = document.getElementById('email')
   const passwordnput = document.getElementById('password')
-  const phonenput = document.getElementById('phone')
+  const phoneinput = document.getElementById('phone')
   const addressInput = document.getElementById('address')
   const numberInput = document.getElementById('address-number')
 
+  const confirmDiv = document.querySelector('.c-pass')
+  const addressNumberDiv = document.querySelector('.houseNumberDiv')
+  const phoneDiv = document.querySelector('.phoneDiv')
+  const addressDiv = document.querySelector('.addressDiv')
+
+  confirmDiv.classList.add('display')
+  phoneDiv.classList.remove('display')
+  addressDiv.classList.remove('display')
+  addressNumberDiv.classList.remove('display')
+
   const users = await callApiUsers()
   const lastUser = users[users.lenght - 1]
-  parseFloat(lastUser)
 
-  const newUser = {
-    id: lastUser + 1,
-    name: nameInput.value,
-    email: emailInput.value,
-    password: passwordnput.value,
-    phone: phonenput.value,
-    profilePicture: "",
-    address: [{ street: addressInput, houseNumber: numberInput }],
-    paymentMethods: [],
-    favorites: [],
-    orderHistory: []
+  const name = validateName('name')
+  const email = validateEmail('email')
+  const password = validatePassword('password')
+  const phone = validatePhone()
+  const address = validateAddress('address')
+  const houseNumber = validateHouseNumber('address-number')
+
+  if (name && email && password && phone && address, houseNumber) {
+    console.log(name);
+    console.log(email);
+    console.log(password);
+    console.log(phone);
+    console.log(address);
+    console.log(houseNumber);
+    
+    console.log('criar conta e redirecionar');
+  } else {
+    console.log('erro');
+    console.log(name);
+    console.log(email);
+    console.log(password);
+    console.log(phone);
+    console.log(address);
+    console.log(houseNumber);
   }
 
-  console.log(newUser);
+  document.getElementById('submit-btn').addEventListener('click', (ev) => {
+    ev.preventDefault()
+
+    const newUser = {
+      id: lastUser + 1,
+      name: nameInput.value,
+      email: emailInput.value,
+      password: passwordnput.value,
+      phone: phoneinput.value,
+      cpf: "",
+      profilePicture: "",
+      address: [{ street: addressInput.value, houseNumber: numberInput.value }],
+      paymentMethods: [],
+      favorites: [],
+      orderHistory: []
+    }
+
+    console.log(newUser);
+  })
 }
+
+const createAccountBtn = document.getElementById('have-account')
+createAccountBtn.addEventListener('click', createAccount)
