@@ -1,4 +1,13 @@
-import { validateAddress, validateConfirmPassword, validateEmail, validateHouseNumber, validateName, validatePassword, validatePhone } from "./regexs.js";
+import { 
+  validateAddress, 
+  validateConfirmPassword,
+   validateEmail, 
+   validateHouseNumber, 
+   validateName, 
+   validatePassword, 
+   reformatPhone, 
+   validateNumber
+   } from "./regexs.js";
 
 async function callApiUsers() {
   return await fetch(`http://localhost:3000/users`).then((r) => r.json())
@@ -17,7 +26,7 @@ async function validateForm() {
   const passwordInput = document.getElementById('password')
 
   const infoValidateDiv = document.querySelector('.infos-validate')
-
+  
   const loader = document.querySelector('.content-loader');
 
 loader.classList.remove('display');
@@ -37,7 +46,17 @@ setTimeout(() => {
 
     if (userFounded) {
       location.href = '../src/pages/home.html'; 
-    } 
+    } else {
+      infoValidateDiv.classList.remove('display')
+      const text = document.querySelector('.info-p')
+      text.textContent = 'Usuário não encontrado, por favor, cadastre-se!'
+
+      text.classList.add('color-erro')
+
+      setTimeout(() => {
+        text.classList.remove('color-erro')
+      }, 2 * 1000);
+    }
 
   } else {
     infoValidateDiv.classList.remove('display')
@@ -70,8 +89,6 @@ async function createAccount() {
   const infoValidateDiv = document.querySelector('.infos-validate')
   infoValidateDiv.classList.add('display')
 
-  createAccountBtn.textContent = 'Criar conta'
-
   const nameInput = document.getElementById('name')
   const emailInput = document.getElementById('email')
   const passwordnput = document.getElementById('password')
@@ -95,14 +112,24 @@ async function createAccount() {
   const name = validateName('name')
   const email = validateEmail('email')
   const password = validatePassword('password')
-  const phone = validatePhone()
+
+  reformatPhone()
+  const phone = validateNumber('phone')
+
   const address = validateAddress('address')
   const houseNumber = validateHouseNumber('address-number')
 
-  document.getElementById('submit-btn').addEventListener('click', (ev) => {
+  console.log({ name, email, password, phone, address, houseNumber });
+  
+
+
+  const sbmButton = document.getElementById('submit-btn')
+  sbmButton.textContent = 'Criar conta'
+
+  sbmButton.addEventListener('click', (ev) => {
     ev.preventDefault()
 
-    if (name && email && password && phone && address, houseNumber) {
+    if (name && email && password && phone && address && houseNumber) {
       console.log(name);
       console.log(email);
       console.log(password);

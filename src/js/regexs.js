@@ -55,7 +55,7 @@ export function validateConfirmPassword(idElement1, idElement2) {
   }
 }
 
-export function validatePhone() {
+export function reformatPhone() {
   const phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', (el) => {
     let input = el.target.value.replace(/\D/g, ''); 
@@ -75,13 +75,25 @@ export function validatePhone() {
     if (phoneInput.value.length === 15) {
       phoneInput.classList.remove('false')
       phoneInput.classList.add('true')
-      return true 
     } else {
       phoneInput.classList.remove('true')
       phoneInput.classList.add('false')
-      return false
     }
   });
+}
+
+export function validateNumber(idElement) {
+  const input = document.getElementById(idElement)
+
+  if (input.value.length === 15) {
+    input.classList.remove('false');
+    input.classList.add('true');
+    return true;
+  } else {
+    input.classList.remove('true');
+    input.classList.add('false');
+    return false;
+  }
 }
 
 export function validateAddress(idElement) {
