@@ -1,12 +1,13 @@
 import { 
   validateAddress, 
   validateConfirmPassword,
-   validateEmail, 
-   validateHouseNumber, 
-   validateName, 
-   validatePassword, 
-   reformatPhone, 
-   validateNumber
+  validateEmail, 
+  validateHouseNumber, 
+  validateName, 
+  validatePassword, 
+  reformatPhone, 
+  validateNumber
+
    } from "./regexs.js";
 
 async function callApiUsers() {
@@ -70,20 +71,20 @@ setTimeout(() => {
 }, 1000 * 2)
 }
 
-const form = document.querySelector('form')
-form.addEventListener('submit', (ev) => {
-  ev.preventDefault()
+// const form = document.querySelector('form')
+// form.addEventListener('submit', (ev) => {
+//   ev.preventDefault()
 
-  validateForm()
-})
+//   validateForm()
+// })
 
-addEventListener('keypress', (event) => {
-  const key = event.key
+// addEventListener('keypress', (event) => {
+//   const key = event.key
 
-  if (key === 'Enter') {
-    validateForm()
-  }
-})
+//   if (key === 'Enter') {
+//     validateForm()
+//   }
+// })
 
 async function createAccount() {
   const infoValidateDiv = document.querySelector('.infos-validate')

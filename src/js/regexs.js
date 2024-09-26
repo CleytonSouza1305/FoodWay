@@ -1,59 +1,122 @@
-export function validateName(idElement) {
-  const input = document.getElementById(idElement)
-  if (input.value.length > 2) {    
-    input.classList.remove('false')
-    input.classList.add('true')
+export function validateVisualName() {
+  const input = document.getElementById('name')
+
+  input.addEventListener('input', (el) => {
+    const element = el.target
+    const value = element.value
+    if (value.length > 2) {    
+      element.classList.remove('false')
+      element.classList.add('true')
+    } else {
+      element.classList.remove('true')
+      element.classList.add('false')
+    }
+  })
+}
+
+export function validateName() {
+  const input = document.getElementById('name')
+
+  if (input.value > 2) {
     return true
   } else {
-    input.classList.remove('true')
-    input.classList.add('false')
     return false
   }
 }
 
-export function validateEmail(idElement) {
+//.............................................................................................
+
+export function validateVisualEmail() {
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  const input = document.getElementById(idElement)
+  const input = document.getElementById('email')
+
+  input.addEventListener('input', (el) => {
+    const element = el.target
+    const value = element.value
+
+    if (regex.test(value)) {
+      element.classList.add('true')
+      element.classList.remove('false')
+    } else {
+      element.classList.remove('true')
+      element.classList.add('false')
+    }
+  })
+}
+
+export function validatelEmail() {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  const input = document.getElementById('email')
   if (regex.test(input.value)) {
-    input.classList.add('true')
-    input.classList.remove('false')
     return true
   } else {
-    input.classList.remove('true')
-    input.classList.add('false')
     return false
   }
 }
 
-export function validatePassword(idElement) {
+//.............................................................................................
+
+export function validateVisualPassword() {
   const regex = /[A-Za-z0-9]\d/
-  const input = document.getElementById(idElement)
+  const input = document.getElementById('password')
+
+  input.addEventListener('input', (el) => {
+    const element = el.target
+    const value = element.value
+
+    if (regex.test(value)) {
+      element.classList.add('true')
+      element.classList.remove('false')
+    } else {
+      element.classList.remove('true')
+      element.classList.add('false')
+    }
+  })
+}
+
+export function validatePassword() {
+  const regex = /[A-Za-z0-9]\d/
+  const input = document.getElementById('password')
   if (regex.test(input.value)) {
-    input.classList.add('true')
-    input.classList.remove('false')
     return true
   } else {
-    input.classList.remove('true')
-    input.classList.add('false')
     return false
   }
 }
 
-export function validateConfirmPassword(idElement1, idElement2) {
-  const inputPassword = document.getElementById(idElement1)
-  const inputPasswordConfirm = document.getElementById(idElement2)
+//.............................................................................................
+
+export function validateVisualConfirmPassword() {
+  const inputPassword = document.getElementById('password')
+  const inputPasswordConfirm = document.getElementById('confirm-password')
   const regex = /[A-Za-z0-9]\d/
 
-  if (inputPasswordConfirm.value !== '' && regex.test(inputPasswordConfirm.value) && inputPassword.value === inputPasswordConfirm.value) {
-    inputPasswordConfirm.classList.add('true')
-    inputPasswordConfirm.classList.remove('false')
-    return true
-  } else {
-    inputPasswordConfirm.classList.remove('true')
-    inputPasswordConfirm.classList.add('false')
-    return false
-  }
+  inputPasswordConfirm.addEventListener('input', (el) => {
+    const element = el.target
+    const value = element.value
+
+    if (regex.test(value) && value === inputPassword.value) {
+      element.classList.add('true')
+      element.classList.remove('false')
+    } else {
+      element.classList.remove('true')
+      element.classList.add('false')
+   }
+  })
 }
+
+export function validateConfirmPassword() {
+  const inputPassword = document.getElementById('password')
+  const inputPasswordConfirm = document.getElementById('confirm-password')
+
+    if (inputPassword.value === inputPasswordConfirm.value) {
+      return true
+    } else {
+      return false
+   }
+}
+
+//.............................................................................................
 
 export function reformatPhone() {
   const phoneInput = document.getElementById('phone');
@@ -72,6 +135,7 @@ export function reformatPhone() {
     }
 
     phoneInput.value = finalPhone.substring(0, 15);
+
     if (phoneInput.value.length === 15) {
       phoneInput.classList.remove('false')
       phoneInput.classList.add('true')
@@ -82,38 +146,49 @@ export function reformatPhone() {
   });
 }
 
-export function validateNumber(idElement) {
-  const input = document.getElementById(idElement)
+export function validatePhone() {
+  const input = document.getElementById('phone')
 
   if (input.value.length === 15) {
-    input.classList.remove('false');
-    input.classList.add('true');
-    return true;
+    return true
   } else {
-    input.classList.remove('true');
-    input.classList.add('false');
-    return false;
+    return false
   }
 }
 
-export function validateAddress(idElement) {
-  const addressInput = document.getElementById(idElement)
+//.............................................................................................
+
+
+export function validateVisualAddress() {
+  const addressInput = document.getElementById('address')
   addressInput.addEventListener('input', (el) => {
-    const input = el.target
-    if (input.value !== '' && input.value.length >= 3) {
-      input.classList.remove('false')
-      input.classList.add('true')
-      return true
+    const element = el.target
+    const value = element.value
+    if (value !== '' && value.length >= 3) {
+      element.classList.remove('false')
+      element.classList.add('true')
     } else {
-      input.classList.remove('true')
-      input.classList.add('false')
-      return false
+      element.classList.remove('true')
+      element.classList.add('false')
     }
   })
 }
 
-export function validateHouseNumber(idElement) {
-  const houseNumber = document.getElementById(idElement)
+export function validateAddress() {
+  const addressInput = document.getElementById('address')
+ 
+    if (addressInput.value !== '' && addressInput.value >= 3) {
+      return true
+    } else {
+     return false
+    }
+  
+}
+
+//.............................................................................................
+
+export function validateVisualHouseNumber() {
+  const houseNumber = document.getElementById('address-number')
   houseNumber.addEventListener('input', (el) => {
     const input = el.target
     let value = input.value.replace(/\D/g, '')
@@ -125,11 +200,25 @@ export function validateHouseNumber(idElement) {
     if (value !== '') {
       input.classList.remove('false')
       input.classList.add('true')
-      return true
     } else {
       input.classList.remove('true')
       input.classList.add('false')
-      return false
     }
   })
+}
+
+export function validateHouseNumber() {
+  const houseNumber = document.getElementById('address-number')
+    const input = el.target
+    let value = input.value.replace(/\D/g, '')
+
+    if (input.value !== value) {
+      input.value = value
+    }
+    
+    if (value !== '') {
+      return true
+    } else {
+      return false
+    }
 }
