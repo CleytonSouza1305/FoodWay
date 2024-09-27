@@ -17,7 +17,7 @@ export function validateVisualName() {
 export function validateName() {
   const input = document.getElementById('name')
 
-  if (input.value > 2) {
+  if (input.value.length > 2) {
     return true
   } else {
     return false
@@ -64,7 +64,7 @@ export function validateVisualPassword() {
     const element = el.target
     const value = element.value
 
-    if (regex.test(value)) {
+    if (regex.test(value) && value.length >= 8) {
       element.classList.add('true')
       element.classList.remove('false')
     } else {
@@ -89,13 +89,12 @@ export function validatePassword() {
 export function validateVisualConfirmPassword() {
   const inputPassword = document.getElementById('password')
   const inputPasswordConfirm = document.getElementById('confirm-password')
-  const regex = /[A-Za-z0-9]\d/
 
   inputPasswordConfirm.addEventListener('input', (el) => {
     const element = el.target
     const value = element.value
 
-    if (regex.test(value) && value === inputPassword.value) {
+    if (value === inputPassword.value) {
       element.classList.add('true')
       element.classList.remove('false')
     } else {
@@ -106,10 +105,10 @@ export function validateVisualConfirmPassword() {
 }
 
 export function validateConfirmPassword() {
-  const inputPassword = document.getElementById('password')
   const inputPasswordConfirm = document.getElementById('confirm-password')
+  const regex = /[A-Za-z0-9]\d/
 
-    if (inputPassword.value === inputPasswordConfirm.value) {
+    if (regex.test(inputPasswordConfirm.value)) {
       return true
     } else {
       return false
@@ -118,7 +117,7 @@ export function validateConfirmPassword() {
 
 //.............................................................................................
 
-export function reformatPhone() {
+export function validateVisualPhone() {
   const phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', (el) => {
     let input = el.target.value.replace(/\D/g, ''); 
@@ -177,14 +176,13 @@ export function validateVisualAddress() {
 export function validateAddress() {
   const addressInput = document.getElementById('address')
  
-    if (addressInput.value !== '' && addressInput.value >= 3) {
+    if (addressInput.value !== '' && addressInput.value.length >= 3) {
       return true
     } else {
-     return false
+      return false
     }
-  
 }
-
+ 
 //.............................................................................................
 
 export function validateVisualHouseNumber() {
@@ -208,8 +206,7 @@ export function validateVisualHouseNumber() {
 }
 
 export function validateHouseNumber() {
-  const houseNumber = document.getElementById('address-number')
-    const input = el.target
+  const input = document.getElementById('address-number')
     let value = input.value.replace(/\D/g, '')
 
     if (input.value !== value) {

@@ -108,15 +108,15 @@ input {
   font-size: 14px;
 }
 
-.have-account-div span {
-  color: rgb(62, 170, 242);
+.have-account {
+  color: hsl(208, 94%, 68%);
   font-weight: 700;
   cursor: pointer;
   transition: var(--animeted-variable);
 }
 
-.have-account-div span:hover {
-  color: #5cbbfb;
+.have-account:hover {
+  color: hsl(208, 94%, 78%);
 }
 
 .infos-validate {
