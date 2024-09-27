@@ -8,7 +8,30 @@
       "phone": "(11) 98596-1027",
       "cpf": "111.111.111-11",
       "profilePicture": "https://avatars.githubusercontent.com/u/141965244?v=4",
-      "address": [],
+      "address": [
+        {
+          "street": "aaa",
+          "house_Number": "3"
+        }
+      ],
+      "paymentMethods": [],
+      "favorites": [],
+      "orderHistory": []
+    },
+    {
+      "id": 2,
+      "name": "raisse",
+      "email": "rai@gmail.com",
+      "password": "adad131313",
+      "phone": "(11) 11111-1111",
+      "cpf": "",
+      "profilePicture": "",
+      "address": [
+        {
+          "street": "rua blabla",
+          "house_Number": "222"
+        }
+      ],
       "paymentMethods": [],
       "favorites": [],
       "orderHistory": []
