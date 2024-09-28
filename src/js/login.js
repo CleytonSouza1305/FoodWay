@@ -32,8 +32,8 @@ async function validateForm() {
       const btn = document.getElementById('submit-btn');
 
       if (btn.textContent === 'Entrar') {
-        const nameInput = document.getElementById('name').value.toLowerCase(); // toLowerCase aqui
-        const emailInput = document.getElementById('email').value.toLowerCase(); // toLowerCase aqui
+        const nameInput = document.getElementById('name').value.toLowerCase()
+        const emailInput = document.getElementById('email').value
         const passwordInput = document.getElementById('password').value;
         
         let userFounded = false;
@@ -168,17 +168,29 @@ validateForm();
 async function createNewUser(nameInput, emailInput, passwordInput, phoneInput, addressInput, houseNumberInput) {
   try {
     const data = await fetch(`http://localhost:3000/users`).then((r) => r.json());
-    const lastId = data[data.length - 1].id;
+    let lastId = 1
+    if (data.length > 0) {
+      lastId = data[data.length - 1].id + 1
+    }
 
     const user = {
-      id: lastId + 1,
+      id: lastId,
       name: nameInput,
       email: emailInput,
       password: passwordInput,
       phone: phoneInput,
       cpf: "",
       profilePicture: "",
-      address: [{ street: addressInput, house_Number: houseNumberInput }],
+      address: [
+        { id: 1,
+          label: "",
+          latitude: 0,
+          longitude: 0,
+          street: addressInput,
+          house_Number: houseNumberInput,
+          isDefault: true 
+        }
+      ],
       paymentMethods: [],
       favorites: [],
       orderHistory: []
@@ -197,6 +209,8 @@ async function createNewUser(nameInput, emailInput, passwordInput, phoneInput, a
 
     if (response.ok) {
       loader.classList.add('display');
+      localStorage.setItem('id', lastId + 1)
+      location.href = 'src/pages/home.html';
     }
     
     console.log(data);
