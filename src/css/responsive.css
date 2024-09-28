@@ -1,0 +1,19 @@
+/* Tela celular */
+
+@media (max-width: 768px) {
+  form {
+    height: 100%;
+    width: 100%;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  } 
+
+  .input-group {
+    width: 100%;
+  }
+}
