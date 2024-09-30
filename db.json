@@ -1,44 +1,21 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "cleyton souza",
+      "id": 1,
+      "name": "cleyton",
       "email": "bigcleyton@gmail.com",
-      "password": "teste123457",
+      "password": "teste123dadadad",
       "phone": "(11) 98596-1027",
       "cpf": "",
       "profilePicture": "",
       "address": [
         {
           "id": 1,
-          "label": "",
-          "latitude": 0,
-          "longitude": 0,
-          "street": "Rua Bocaina de Minas",
-          "house_Number": "457",
-          "isDefault": true
-        }
-      ],
-      "paymentMethods": [],
-      "favorites": [],
-      "orderHistory": []
-    },
-    {
-      "id": "11",
-      "name": "cleyton souz",
-      "email": "aa@aa.aa",
-      "password": "1305oiiaa",
-      "phone": "(11) 98596-1027",
-      "cpf": "",
-      "profilePicture": "",
-      "address": [
-        {
-          "id": 1,
-          "label": "",
-          "latitude": 0,
-          "longitude": 0,
-          "street": "Rua Bocaina de Minas",
-          "house_Number": "457",
+          "label": "Outros",
+          "latitude": "-23.763631",
+          "longitude": "-46.6965525",
+          "street": "Rua Opção Brasil Natal, Grajaú, São Paulo",
+          "house_Number": "09",
           "isDefault": true
         }
       ],
