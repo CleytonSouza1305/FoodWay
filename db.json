@@ -1,10 +1,33 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "cleyton souza",
       "email": "bigcleyton@gmail.com",
       "password": "teste123457",
+      "phone": "(11) 98596-1027",
+      "cpf": "",
+      "profilePicture": "",
+      "address": [
+        {
+          "id": 1,
+          "label": "",
+          "latitude": 0,
+          "longitude": 0,
+          "street": "Rua Bocaina de Minas",
+          "house_Number": "457",
+          "isDefault": true
+        }
+      ],
+      "paymentMethods": [],
+      "favorites": [],
+      "orderHistory": []
+    },
+    {
+      "id": "11",
+      "name": "cleyton souz",
+      "email": "aa@aa.aa",
+      "password": "1305oiiaa",
       "phone": "(11) 98596-1027",
       "cpf": "",
       "profilePicture": "",
