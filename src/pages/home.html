@@ -3,9 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/responsive.css">
   <title>Home | FoodWay</title>
 </head>
 <body>
-  <h1>Home FoodWay</h1>
+  <header class="header-home">
+    <div class="logo-header">
+      <img src="../imgs/foodway-logo.jpg" alt="Logo do restaurante">
+    </div>
+    <div class="address-div-switch">
+      <p id="address-for-delivery"></p>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="user-infos">
+      <div class="bell-notification">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notification-quantity">0</span>
+      </div>
+      <div class="user-info-config">
+        <img id="avatar" src="../imgs/user-not-picture.jpg" alt="Foto de usuário" width="42px">
+      </div>
+    </div>
+  </header>
+
+  <div class="modal">
+    <div class="modal-content">
+      <p>Endereço de entrega</p>
+      <div class="actual-address">
+        <div class="label-icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="rest-infos">
+          <span class="label-address">label</span>
+          <span class="street">street</span>
+          <span class="number-house">N°</span>
+          <span class="city">cidade</span>
+        </div>
+        <div class="edit-address">
+          <div class="pontinhos">
+            <i class="fas fa-circle"></i>
+            <i class="fas fa-circle"></i>
+            <i class="fas fa-circle"></i>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/home.js"></script>
 </body>
 </html>

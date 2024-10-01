@@ -16,6 +16,18 @@
   .input-group {
     width: 100%;
   }
+
+  .header-home {
+    padding: 0 0.5rem;
+  }
+
+  .address-div-switch {
+    width: 170px;
+  }
+
+  .user-infos {
+    gap: 1rem;
+  }
 }
 
 /* Telas Grandes */
