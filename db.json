@@ -22,6 +22,52 @@
       "paymentMethods": [],
       "favorites": [],
       "orderHistory": []
+    },
+    {
+      "id": 2,
+      "name": "cleyton souza",
+      "email": "teste@gmail.com",
+      "password": "aaaaaaaaaaaa33",
+      "phone": "(11) 98596-1027",
+      "cpf": "",
+      "profilePicture": "",
+      "address": [
+        {
+          "id": 1,
+          "label": "Outros",
+          "latitude": "-18.8843338",
+          "longitude": "-41.9422862",
+          "street": "Rua Bocaina, Vila Parque Ibituruna, Governador Valadares",
+          "house_Number": "457",
+          "isDefault": true
+        }
+      ],
+      "paymentMethods": [],
+      "favorites": [],
+      "orderHistory": []
+    },
+    {
+      "id": 3,
+      "name": "raissa",
+      "email": "rai289@gmail.com",
+      "password": "289289289",
+      "phone": "(11) 98596-1027",
+      "cpf": "",
+      "profilePicture": "",
+      "address": [
+        {
+          "id": 1,
+          "label": "Outros",
+          "latitude": "-23.6877562",
+          "longitude": "-46.7678589",
+          "street": "Rua Olga Moretti Ferrari, Vila Jardim Santa Lucia, Jardim Ângela",
+          "house_Number": "09",
+          "isDefault": true
+        }
+      ],
+      "paymentMethods": [],
+      "favorites": [],
+      "orderHistory": []
     }
   ]
 }

@@ -17,3 +17,11 @@
     width: 100%;
   }
 }
+
+/* Telas Grandes */
+
+@media screen and (min-width: 1720px) {
+.input-group {
+  width: 400px;
+}
+}

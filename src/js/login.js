@@ -1,6 +1,6 @@
+import { createNewUser } from "./funcoes.js";
 import { 
   validateAddress,
-  validateConfirmPassword,
   validateHouseNumber,
   validatelEmail,
   validateName,
@@ -165,76 +165,4 @@ async function validateForm() {
 
 validateForm();
 
-async function createNewUser(nameInput, emailInput, passwordInput, phoneInput, addressInput, houseNumberInput) {
-  try {
-    const data = await fetch(`http://localhost:3000/users`).then((r) => r.json());
-    let lastId = 1
-    if (data.length >= 1) {
-      lastId = parseFloat(data[data.length - 1].id + 1)
-    }
 
-    const addressApi = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${addressInput}, ${houseNumberInput}`).then((r) => r.json())
-
-    const shortAddress = simplifyAddress(addressApi[0].display_name)
-
-    const user = {
-    id: lastId,
-    name: nameInput,
-    email: emailInput,
-    password: passwordInput,
-    phone: phoneInput,
-    cpf: "",
-    profilePicture: "",
-    address: [
-      { id: 1,
-        label: "Outros",
-        latitude: addressApi[0].lat,
-        longitude: addressApi[0].lon,
-        street: shortAddress,
-        house_Number: houseNumberInput,
-        isDefault: true 
-      }
-    ],
-    paymentMethods: [],
-    favorites: [],
-    orderHistory: []
-  };
-  console.log(user);
-
-    const response = await fetch('http://localhost:3000/users', {
-      method: 'POST',
-      body: JSON.stringify(user),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    const loader = document.querySelector('.content-loader');
-    loader.classList.remove('display');
-
-    if (response.ok) {
-      loader.classList.add('display');
-      localStorage.setItem('id', lastId + 1)
-      location.href = 'src/pages/home.html';
-    }
-    
-    console.log(data);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-async function teste(address) {
-  const data = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${address}`).then((r) => r.json())
-
-  console.log(data);
-  
-}
-const address = 'Rua tutóia 811, São Paulo, SP'
-teste(address)
-
-function simplifyAddress(address) {
-  const components = address.split(',');
-  const shortAddress = components.slice(0, 3).map(part => part.trim()).join(', ');
-  return shortAddress;
-}
