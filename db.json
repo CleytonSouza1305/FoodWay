@@ -69,5 +69,281 @@
       "favorites": [],
       "orderHistory": []
     }
-  ]
+  ],
+
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Pizzaria Nova",
+      "category": "Pizza",
+      "rating": 4.5,
+      "totalRatings": 120,
+      "isOpen": true,
+      "openHour": "11:00",
+      "closeHour": "23:00",
+      "logo": "path/to/logo-pizzaria.jpg",
+      "coverImage": "path/to/cover-pizzaria.jpg",
+      "phone": "123-456-7890",
+      "location": {
+        "address": "123 Pizza Street, Bairro, Cidade, Estado",
+        "latitude": -23.550520,
+        "longitude": -46.633308
+      },
+      "delivery": {
+        "minTime": 30,
+        "maxTime": 60,
+        "deliveryFee": 5.00,
+        "distanceLimit": 10
+      },
+      "paymentMethods": ["Credit Card", "Pix", "Cash"],
+      "menu": [
+        {
+          "id": 1,
+          "name": "Pizza Margherita",
+          "description": "Pizza com molho de tomate, queijo mussarela e manjericão",
+          "price": 35.00,
+          "category": "Pizzas",
+          "image": "path/to/pizza-margherita.jpg",
+          "available": true
+        },
+        {
+          "id": 2,
+          "name": "Pizza Pepperoni",
+          "description": "Pizza com molho de tomate, queijo mussarela e pepperoni",
+          "price": 40.00,
+          "category": "Pizzas",
+          "image": "path/to/pizza-pepperoni.jpg",
+          "available": true
+        }
+      ],
+      "reviews": [
+        {
+          "userId": 101,
+          "userName": "John Doe",
+          "rating": 5,
+          "comment": "A pizza estava incrível!",
+          "date": "2024-09-18"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sushi Express",
+      "category": "Japanese",
+      "rating": 4.8,
+      "totalRatings": 250,
+      "isOpen": false,
+      "openHour": "12:00",
+      "closeHour": "22:00",
+      "logo": "path/to/logo-sushi.jpg",
+      "coverImage": "path/to/cover-sushi.jpg",
+      "phone": "234-567-8901",
+      "location": {
+        "address": "456 Sushi Lane, Bairro, Cidade, Estado",
+        "latitude": -23.561520,
+        "longitude": -46.644308
+      },
+      "delivery": {
+        "minTime": 40,
+        "maxTime": 70,
+        "deliveryFee": 8.00,
+        "distanceLimit": 12
+      },
+      "paymentMethods": ["Credit Card", "Cash"],
+      "menu": [
+        {
+          "id": 1,
+          "name": "Combinado de Sushi",
+          "description": "Sushi de salmão, atum e peixe branco",
+          "price": 60.00,
+          "category": "Sushi",
+          "image": "path/to/sushi-combo.jpg",
+          "available": true
+        },
+        {
+          "id": 2,
+          "name": "Temaki de Salmão",
+          "description": "Temaki de salmão fresco com cream cheese",
+          "price": 20.00,
+          "category": "Temakis",
+          "image": "path/to/temaki.jpg",
+          "available": true
+        }
+      ],
+      "reviews": [
+        {
+          "userId": 102,
+          "userName": "Jane Smith",
+          "rating": 4,
+          "comment": "Muito fresco e saboroso!",
+          "date": "2024-09-17"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Hamburgueria do Chef",
+      "category": "Burger",
+      "rating": 4.2,
+      "totalRatings": 150,
+      "isOpen": true,
+      "openHour": "17:00",
+      "closeHour": "02:00",
+      "logo": "path/to/logo-burger.jpg",
+      "coverImage": "path/to/cover-burger.jpg",
+      "phone": "345-678-9012",
+      "location": {
+        "address": "789 Burger Avenue, Bairro, Cidade, Estado",
+        "latitude": -23.570520,
+        "longitude": -46.653308
+      },
+      "delivery": {
+        "minTime": 20,
+        "maxTime": 50,
+        "deliveryFee": 4.50,
+        "distanceLimit": 8
+      },
+      "paymentMethods": ["Pix", "Cash"],
+      "menu": [
+        {
+          "id": 1,
+          "name": "Cheeseburger",
+          "description": "Hambúrguer com queijo cheddar, alface e tomate",
+          "price": 25.00,
+          "category": "Burgers",
+          "image": "path/to/cheeseburger.jpg",
+          "available": true
+        },
+        {
+          "id": 2,
+          "name": "Burger Duplo Bacon",
+          "description": "Dois hambúrgueres com bacon, queijo cheddar e cebola crispy",
+          "price": 35.00,
+          "category": "Burgers",
+          "image": "path/to/burger-bacon.jpg",
+          "available": true
+        }
+      ],
+      "reviews": [
+        {
+          "userId": 103,
+          "userName": "Lucas Pereira",
+          "rating": 4,
+          "comment": "Muito saboroso, mas poderia ser maior!",
+          "date": "2024-09-16"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Churrascaria Gaúcha",
+      "category": "Barbecue",
+      "rating": 4.9,
+      "totalRatings": 300,
+      "isOpen": true,
+      "openHour": "11:30",
+      "closeHour": "22:30",
+      "logo": "path/to/logo-churrascaria.jpg",
+      "coverImage": "path/to/cover-churrascaria.jpg",
+      "phone": "456-789-0123",
+      "location": {
+        "address": "321 BBQ Street, Bairro, Cidade, Estado",
+        "latitude": -23.580520,
+        "longitude": -46.663308
+      },
+      "delivery": {
+        "minTime": 50,
+        "maxTime": 90,
+        "deliveryFee": 10.00,
+        "distanceLimit": 15
+      },
+      "paymentMethods": ["Credit Card", "Pix", "Cash"],
+      "menu": [
+        {
+          "id": 1,
+          "name": "Picanha",
+          "description": "Picanha na brasa servida com farofa e vinagrete",
+          "price": 75.00,
+          "category": "Carnes",
+          "image": "path/to/picanha.jpg",
+          "available": true
+        },
+        {
+          "id": 2,
+          "name": "Costela de Boi",
+          "description": "Costela bovina assada por 6 horas",
+          "price": 85.00,
+          "category": "Carnes",
+          "image": "path/to/costela.jpg",
+          "available": true
+        }
+      ],
+      "reviews": [
+        {
+          "userId": 104,
+          "userName": "Carlos Oliveira",
+          "rating": 5,
+          "comment": "Melhor churrasco que já comi!",
+          "date": "2024-09-15"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Vegano Green",
+      "category": "Vegan",
+      "rating": 4.7,
+      "totalRatings": 180,
+      "isOpen": true,
+      "openHour": "10:00",
+      "closeHour": "21:00",
+      "logo": "path/to/logo-vegano.jpg",
+      "coverImage": "path/to/cover-vegano.jpg",
+      "phone": "567-890-1234",
+      "location": {
+        "address": "987 Green Avenue, Bairro, Cidade, Estado",
+        "latitude": -23.590520,
+        "longitude": -46.673308
+      },
+      "delivery": {
+        "minTime": 25,
+        "maxTime": 45,
+        "deliveryFee": 6.00,
+        "distanceLimit": 9
+      },
+      "paymentMethods": ["Credit Card", "Pix"],
+      "menu": [
+        {
+          "id": 1,
+          "name": "Salada Completa",
+          "description": "Salada com mix de folhas, grãos e vegetais frescos",
+          "price": 30.00,
+          "category": "Saladas",
+          "image": "path/to/salada.jpg",
+          "available": true
+        },
+        {
+          "id": 2,
+          "name": "Hambúrguer Vegano",
+          "description": "Hambúrguer feito com grão de bico e quinoa",
+          "price": 35.00,
+          "category": "Burgers",
+          "image": "path/to/veg-burger.jpg",
+          "available": true
+        }
+      ],
+      "reviews": [
+        {
+          "userId": 105,
+          "userName": "Ana Souza",
+          "rating": 4.5,
+          "comment": "Comida deliciosa e saudável!",
+          "date": "2024-09-14"
+        }
+      ]
+    }
+  ]  
 }
+
+
+  
