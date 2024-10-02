@@ -112,6 +112,13 @@ p#address-for-delivery {
   text-align: center;
   font-weight: 500;
   padding: 1rem;
+  font-weight: 600;
+  transition: ease-in-out 600ms;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .actual-address {
@@ -130,6 +137,10 @@ p#address-for-delivery {
   width: 280px;
 }
 
+.label-icon {
+  font-size: 1.4rem;
+}
+
 .pontinhos {
   display: flex;
   flex-direction: column; 
@@ -139,6 +150,27 @@ p#address-for-delivery {
   cursor: pointer;
 }
 
+.rest-infos .street {
+  width: 250px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  border: none;
+}
+
+.close-btn i {
+  font-size: 1.5rem;
+  margin: 0.3rem 0 0 0.3rem;
+  color: var(--light-red);
+}
 /* .user-info-config p {
   background-color: #337ab7;
   color: #f4f5f6;
@@ -152,3 +184,6 @@ p#address-for-delivery {
   background-color: hsl(208, 56%, 56%);
 } */
 
+.display {
+  display: none;
+}
