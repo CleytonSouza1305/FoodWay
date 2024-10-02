@@ -17,6 +17,15 @@
           "street": "Rua Opção Brasil Natal, Grajaú, São Paulo",
           "house_Number": "09",
           "isDefault": true
+        },
+        {
+          "id": 2,
+          "label": "Outros",
+          "latitude": "-23.6877562",
+          "longitude": "-46.7678589",
+          "street": "Rua Olga Moretti Ferrari, Vila Jardim Santa Lucia, Jardim Ângela",
+          "house_Number": "09",
+          "isDefault": false
         }
       ],
       "paymentMethods": [],

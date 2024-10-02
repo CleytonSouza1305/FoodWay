@@ -91,19 +91,21 @@ p#address-for-delivery {
 }
 
 .modal {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   justify-content: center;
   position: fixed;
+  cursor: pointer;
 }
 
 .modal .modal-content {
   position: absolute;
   width: 450px;
-  height: 250px;
+  height: 350px;
+  overflow-y: scroll;
   border-radius: 6px;
   background-color: #f4f5f6;
   left: 50%;
@@ -116,17 +118,26 @@ p#address-for-delivery {
   transition: ease-in-out 600ms;
 }
 
-.modal-content p {
+.modal-content .delivery-address {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
 
-.actual-address {
+.box {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  border: 1px solid rgb(255, 72, 0);
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.actual-address {
+  border: 2px solid rgb(255, 72, 0);
+}
+
+.address-box {
+  border: 2px solid rgb(65, 65, 65);
 }
 
 .rest-infos {
@@ -148,6 +159,7 @@ p#address-for-delivery {
   font-size: 0.3rem;
   gap: 0.2rem;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .rest-infos .street {
@@ -170,6 +182,22 @@ p#address-for-delivery {
   font-size: 1.5rem;
   margin: 0.3rem 0 0 0.3rem;
   color: var(--light-red);
+}
+
+.more-address {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid rgb(65, 65, 65);
+  transition: var(--animeted-variable);
+}
+
+.more-address:hover {
+  background-color: #c8c8c8;
 }
 /* .user-info-config p {
   background-color: #337ab7;
