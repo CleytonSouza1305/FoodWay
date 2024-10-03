@@ -49,7 +49,7 @@ async function userData(id) {
       const labelAddress = document.createElement('span')
       labelAddress.classList.add('label-address')
       const labelToUpper = ad.label.charAt(0).toUpperCase() + ad.label.slice(1).toLowerCase();
-      labelAddress.textContent = labelToUpper
+      labelAddress.textContent = labelToUpper + ':'
 
       const street = document.createElement('span')
       street.classList.add('street')
@@ -80,6 +80,10 @@ async function userData(id) {
       circleTres.classList.add('fas', 'fa-circle')
       const pointsDiv = document.createElement('div')
       pointsDiv.classList.add('pontinhos')
+      pointsDiv.id = ad.id
+      circleUm.id = ad.id
+      circleDois.id = ad.id
+      circleTres.id = ad.id
       pointsDiv.append(circleUm, circleDois, circleTres)
       editAddress.append(pointsDiv)
 
@@ -91,8 +95,6 @@ async function userData(id) {
     if (data.profilePicture !== "") {
       avatar.src = data.profilePicture
     }
-
-    console.log(data);
   } catch (e) {
     console.error(`Erro ao executar função: ${e}`);
   }
@@ -102,12 +104,21 @@ await userData(userId)
 
 function switchAddress () {
   const modal = document.querySelector('.modal')
+  let isOpen = true
+  const icon = document.getElementById('icon-chevron')
+
+  if (isOpen) {
+    icon.classList.remove('fas', 'fa-chevron-down')
+    icon.classList.add('fa-solid', 'fa-chevron-up')
+  }
   
   modal.classList.remove('display')
 
   modal.addEventListener('click', (el) => {
     if (el.target === modal) {
       modal.classList.add('display')
+      icon.classList.remove('fa-solid', 'fa-chevron-up')
+      icon.classList.add('fas', 'fa-chevron-down')
     }
   })
 
@@ -115,6 +126,86 @@ function switchAddress () {
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       modal.classList.add('display')
+      icon.classList.remove('fa-solid', 'fa-chevron-up')
+      icon.classList.add('fas', 'fa-chevron-down')
+    })
+  }
+}
+
+const pointsEdit = document.querySelectorAll('.pontinhos')
+pointsEdit.forEach((btn) => {
+  btn.addEventListener('click', (button) => {
+    const id = parseFloat(button.target.id)
+    editAddress(id)
+  })
+})
+
+async function editAddress(idElement) {
+  const content = document.querySelector('.modal-edit-address')
+  content.classList.remove('display')
+
+  const addressData = await fetch(`http://localhost:3000/users/${userId}`).then((r) => r.json())
+  const addressArray = addressData.address
+
+  let streetValue = document.getElementById('rua')
+  let numberValue = document.getElementById('number')
+  let labelValue = document.getElementById('label')
+  addressArray.forEach((ad) => {
+    if (ad.id === idElement) {
+      
+      streetValue.value = ad.street;
+      numberValue.value = ad.house_Number;
+      labelValue.value = ad.label;
+      
+      const form = document.getElementById('address-form')
+      form.addEventListener('submit', async (ev) => {
+        ev.preventDefault()
+      
+      const url = `http://localhost:3000/users/${userId}`
+
+      const index = addressArray.findIndex((i) => i.id === idElement)
+      const newAddress = {
+        id: ad.id,
+        label: labelValue.value,
+        latitude: ad.latitude,
+        longitude: ad.longitude,
+        street: astreetValue.value,
+        house_Number: numberValue.value,
+        isDefault: ad.isDefault
+      }
+
+      // const response = await fetch(url, {
+      //   method: 'PUT',
+      //   body: JSON.stringify(ad.street = streetValue.value,
+      //     ad.house_Number = numberValue.value,
+      //     ad.label = labelValue.value),
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // });
+    
+      const loader = document.querySelector('.content-loader');
+      loader.classList.remove('display');
+  
+      // if (response.ok) {
+      //   loader.classList.add('display');
+      //   localStorage.setItem('id', lastId + 1)
+      //   location.href = 'src/pages/home.html';
+      // }
+    })
+  }
+})
+
+  content.addEventListener('click', (el) => {
+    if (el.target === content) {
+      content.classList.add('display')
+    }
+  })
+
+  const closeBtn = document.querySelector('.close-edit-btn-address')
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      content.classList.add('display')
     })
   }
 }

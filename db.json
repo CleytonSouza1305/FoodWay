@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "cleyton",
       "email": "bigcleyton@gmail.com",
       "password": "teste123dadadad",
@@ -33,30 +33,7 @@
       "orderHistory": []
     },
     {
-      "id": 2,
-      "name": "cleyton souza",
-      "email": "teste@gmail.com",
-      "password": "aaaaaaaaaaaa33",
-      "phone": "(11) 98596-1027",
-      "cpf": "",
-      "profilePicture": "https://avatars.githubusercontent.com/u/141965244?v=4",
-      "address": [
-        {
-          "id": 1,
-          "label": "Outros",
-          "latitude": "-18.8843338",
-          "longitude": "-41.9422862",
-          "street": "Rua Bocaina, Vila Parque Ibituruna, Governador Valadares",
-          "house_Number": "457",
-          "isDefault": true
-        }
-      ],
-      "paymentMethods": [],
-      "favorites": [],
-      "orderHistory": []
-    },
-    {
-      "id": 3,
+      "id": "2",
       "name": "raissa",
       "email": "rai289@gmail.com",
       "password": "289289289",
@@ -79,10 +56,9 @@
       "orderHistory": []
     }
   ],
-
   "restaurants": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Pizzaria Nova",
       "category": "Pizza",
       "rating": 4.5,
@@ -95,22 +71,26 @@
       "phone": "123-456-7890",
       "location": {
         "address": "123 Pizza Street, Bairro, Cidade, Estado",
-        "latitude": -23.550520,
+        "latitude": -23.55052,
         "longitude": -46.633308
       },
       "delivery": {
         "minTime": 30,
         "maxTime": 60,
-        "deliveryFee": 5.00,
+        "deliveryFee": 5,
         "distanceLimit": 10
       },
-      "paymentMethods": ["Credit Card", "Pix", "Cash"],
+      "paymentMethods": [
+        "Credit Card",
+        "Pix",
+        "Cash"
+      ],
       "menu": [
         {
           "id": 1,
           "name": "Pizza Margherita",
           "description": "Pizza com molho de tomate, queijo mussarela e manjericão",
-          "price": 35.00,
+          "price": 35,
           "category": "Pizzas",
           "image": "path/to/pizza-margherita.jpg",
           "available": true
@@ -119,7 +99,7 @@
           "id": 2,
           "name": "Pizza Pepperoni",
           "description": "Pizza com molho de tomate, queijo mussarela e pepperoni",
-          "price": 40.00,
+          "price": 40,
           "category": "Pizzas",
           "image": "path/to/pizza-pepperoni.jpg",
           "available": true
@@ -136,7 +116,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sushi Express",
       "category": "Japanese",
       "rating": 4.8,
@@ -149,22 +129,25 @@
       "phone": "234-567-8901",
       "location": {
         "address": "456 Sushi Lane, Bairro, Cidade, Estado",
-        "latitude": -23.561520,
+        "latitude": -23.56152,
         "longitude": -46.644308
       },
       "delivery": {
         "minTime": 40,
         "maxTime": 70,
-        "deliveryFee": 8.00,
+        "deliveryFee": 8,
         "distanceLimit": 12
       },
-      "paymentMethods": ["Credit Card", "Cash"],
+      "paymentMethods": [
+        "Credit Card",
+        "Cash"
+      ],
       "menu": [
         {
           "id": 1,
           "name": "Combinado de Sushi",
           "description": "Sushi de salmão, atum e peixe branco",
-          "price": 60.00,
+          "price": 60,
           "category": "Sushi",
           "image": "path/to/sushi-combo.jpg",
           "available": true
@@ -173,7 +156,7 @@
           "id": 2,
           "name": "Temaki de Salmão",
           "description": "Temaki de salmão fresco com cream cheese",
-          "price": 20.00,
+          "price": 20,
           "category": "Temakis",
           "image": "path/to/temaki.jpg",
           "available": true
@@ -190,7 +173,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Hamburgueria do Chef",
       "category": "Burger",
       "rating": 4.2,
@@ -203,22 +186,25 @@
       "phone": "345-678-9012",
       "location": {
         "address": "789 Burger Avenue, Bairro, Cidade, Estado",
-        "latitude": -23.570520,
+        "latitude": -23.57052,
         "longitude": -46.653308
       },
       "delivery": {
         "minTime": 20,
         "maxTime": 50,
-        "deliveryFee": 4.50,
+        "deliveryFee": 4.5,
         "distanceLimit": 8
       },
-      "paymentMethods": ["Pix", "Cash"],
+      "paymentMethods": [
+        "Pix",
+        "Cash"
+      ],
       "menu": [
         {
           "id": 1,
           "name": "Cheeseburger",
           "description": "Hambúrguer com queijo cheddar, alface e tomate",
-          "price": 25.00,
+          "price": 25,
           "category": "Burgers",
           "image": "path/to/cheeseburger.jpg",
           "available": true
@@ -227,7 +213,7 @@
           "id": 2,
           "name": "Burger Duplo Bacon",
           "description": "Dois hambúrgueres com bacon, queijo cheddar e cebola crispy",
-          "price": 35.00,
+          "price": 35,
           "category": "Burgers",
           "image": "path/to/burger-bacon.jpg",
           "available": true
@@ -244,7 +230,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Churrascaria Gaúcha",
       "category": "Barbecue",
       "rating": 4.9,
@@ -257,22 +243,26 @@
       "phone": "456-789-0123",
       "location": {
         "address": "321 BBQ Street, Bairro, Cidade, Estado",
-        "latitude": -23.580520,
+        "latitude": -23.58052,
         "longitude": -46.663308
       },
       "delivery": {
         "minTime": 50,
         "maxTime": 90,
-        "deliveryFee": 10.00,
+        "deliveryFee": 10,
         "distanceLimit": 15
       },
-      "paymentMethods": ["Credit Card", "Pix", "Cash"],
+      "paymentMethods": [
+        "Credit Card",
+        "Pix",
+        "Cash"
+      ],
       "menu": [
         {
           "id": 1,
           "name": "Picanha",
           "description": "Picanha na brasa servida com farofa e vinagrete",
-          "price": 75.00,
+          "price": 75,
           "category": "Carnes",
           "image": "path/to/picanha.jpg",
           "available": true
@@ -281,7 +271,7 @@
           "id": 2,
           "name": "Costela de Boi",
           "description": "Costela bovina assada por 6 horas",
-          "price": 85.00,
+          "price": 85,
           "category": "Carnes",
           "image": "path/to/costela.jpg",
           "available": true
@@ -298,7 +288,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Vegano Green",
       "category": "Vegan",
       "rating": 4.7,
@@ -311,22 +301,25 @@
       "phone": "567-890-1234",
       "location": {
         "address": "987 Green Avenue, Bairro, Cidade, Estado",
-        "latitude": -23.590520,
+        "latitude": -23.59052,
         "longitude": -46.673308
       },
       "delivery": {
         "minTime": 25,
         "maxTime": 45,
-        "deliveryFee": 6.00,
+        "deliveryFee": 6,
         "distanceLimit": 9
       },
-      "paymentMethods": ["Credit Card", "Pix"],
+      "paymentMethods": [
+        "Credit Card",
+        "Pix"
+      ],
       "menu": [
         {
           "id": 1,
           "name": "Salada Completa",
           "description": "Salada com mix de folhas, grãos e vegetais frescos",
-          "price": 30.00,
+          "price": 30,
           "category": "Saladas",
           "image": "path/to/salada.jpg",
           "available": true
@@ -335,7 +328,7 @@
           "id": 2,
           "name": "Hambúrguer Vegano",
           "description": "Hambúrguer feito com grão de bico e quinoa",
-          "price": 35.00,
+          "price": 35,
           "category": "Burgers",
           "image": "path/to/veg-burger.jpg",
           "available": true
@@ -351,8 +344,5 @@
         }
       ]
     }
-  ]  
+  ]
 }
-
-
-  

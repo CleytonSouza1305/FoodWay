@@ -71,7 +71,7 @@ async function validateForm() {
           }, 3000);
         }
       } else {
-        // Lógica para criar conta
+        createNewUser(nameInput, emailInput, passwordInput, phoneInput, addressInput, houseNumberInput);
       }
     });
 
@@ -164,5 +164,3 @@ async function validateForm() {
 }
 
 validateForm();
-
-

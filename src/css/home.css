@@ -90,7 +90,8 @@ p#address-for-delivery {
   cursor: pointer;
 }
 
-.modal {
+.modal,
+.modal-edit-address {
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
   width: 100%;
   height: 100%;
@@ -115,10 +116,25 @@ p#address-for-delivery {
   font-weight: 500;
   padding: 1rem;
   font-weight: 600;
-  transition: ease-in-out 600ms;
 }
 
-.modal-content .delivery-address {
+.modal-edit-address .modal-edit-content-address  {
+  position: absolute;
+  width: 450px;
+  height: 350px;
+  border-radius: 6px;
+  background-color: #d2d3d3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: 500;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.modal-content .delivery-address,
+.edit-address {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
@@ -170,7 +186,8 @@ p#address-for-delivery {
   text-overflow: ellipsis;
 }
 
-.close-btn {
+.close-btn,
+.close-edit-btn-address {
   position: absolute;
   top: 0;
   left: 0;
@@ -178,7 +195,8 @@ p#address-for-delivery {
   border: none;
 }
 
-.close-btn i {
+.close-btn i,
+.close-edit-btn-address i {
   font-size: 1.5rem;
   margin: 0.3rem 0 0 0.3rem;
   color: var(--light-red);
@@ -198,6 +216,44 @@ p#address-for-delivery {
 
 .more-address:hover {
   background-color: #c8c8c8;
+}
+
+#address-form label {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 5px;
+  text-align: start;
+  margin-bottom: 0.5rem;
+}
+
+#address-form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+#address-form input:focus {
+  outline: none;
+  border-color: #ff3333;
+}
+
+#address-form .submit-btn {
+  background-color: #ff3333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+#address-form .submit-btn:hover {
+  background-color: #cc0000;
 }
 /* .user-info-config p {
   background-color: #337ab7;

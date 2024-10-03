@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/loader.css">
   <title>Home | FoodWay</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
     </div>
     <div class="address-div-switch">
       <p id="address-for-delivery"></p>
-      <i class="fas fa-chevron-down"></i>
+      <i class="fas fa-chevron-down" id="icon-chevron"></i>
     </div>
     <div class="user-infos">
       <div class="bell-notification">
@@ -44,6 +45,44 @@
     </div>
   </div>
 
+  <div class="modal-edit-address display">
+    <div class="modal-edit-content-address">
+      <button class="close-edit-btn-address" type="button">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <p class="edit-address">Editar Endereço</p>
+      <form id="address-form">
+        <label for="label">Etiqueta:</label>
+        <input type="text" id="label" />
+  
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua"/>
+  
+        <label for="number">Nº:</label>
+        <input type="number" id="number">
+  
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="content-loader display">
+    <div class="div-loader">
+      <div class="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
   <script type="module" src="/src/js/home.js"></script>
 </body>
 </html>
