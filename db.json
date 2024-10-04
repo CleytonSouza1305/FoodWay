@@ -20,11 +20,11 @@
         },
         {
           "id": 2,
-          "label": "Outros",
+          "label": "Trabalho",
           "latitude": "-23.6877562",
           "longitude": "-46.7678589",
-          "street": "Rua Olga Moretti Ferrari, Vila Jardim Santa Lucia, Jardim Ângela",
-          "house_Number": "09",
+          "street": "Rua Bocaina de Minas, Jd Tupí",
+          "house_Number": "457",
           "isDefault": false
         }
       ],

@@ -97,6 +97,8 @@ async function userData(id) {
     }
   } catch (e) {
     console.error(`Erro ao executar função: ${e}`);
+    console.error(`Linha: ${error.stack}`);
+
   }
 }
 
@@ -162,36 +164,40 @@ async function editAddress(idElement) {
         ev.preventDefault()
       
       const url = `http://localhost:3000/users/${userId}`
+      let newAddress 
 
       const index = addressArray.findIndex((i) => i.id === idElement)
-      const newAddress = {
-        id: ad.id,
-        label: labelValue.value,
-        latitude: ad.latitude,
-        longitude: ad.longitude,
-        street: astreetValue.value,
-        house_Number: numberValue.value,
-        isDefault: ad.isDefault
+      if (index !== -1) {
+        newAddress = {
+          id: ad.id,
+          label: labelValue.value,
+          latitude: ad.latitude,
+          longitude: ad.longitude,
+          street: streetValue.value,
+          house_Number: numberValue.value,
+          isDefault: ad.isDefault
+        }
+      } else {
+        return
       }
 
-      // const response = await fetch(url, {
-      //   method: 'PUT',
-      //   body: JSON.stringify(ad.street = streetValue.value,
-      //     ad.house_Number = numberValue.value,
-      //     ad.label = labelValue.value),
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   }
-      // });
+      addressArray[index] = newAddress
+      addressData.address = addressArray
+      
+      const response = await fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(addressData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
     
       const loader = document.querySelector('.content-loader');
       loader.classList.remove('display');
   
-      // if (response.ok) {
-      //   loader.classList.add('display');
-      //   localStorage.setItem('id', lastId + 1)
-      //   location.href = 'src/pages/home.html';
-      // }
+      if (response.ok) {
+        loader.classList.add('display');
+      }
     })
   }
 })
