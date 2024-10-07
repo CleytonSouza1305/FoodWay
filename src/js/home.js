@@ -13,9 +13,17 @@ async function userData(id) {
     const modalContent = document.querySelector('.modal-content')
     const moreAddressDiv = document.createElement('div')
     moreAddressDiv.classList.add('more-address')
+    moreAddressDiv.id = 'addAddress'
     const spanMoreAddress = document.createElement('p')
-    spanMoreAddress.innerHTML = `<i class="fas fa-plus"></i>
-`
+    spanMoreAddress.innerHTML = `<i class="fas fa-plus"></i>`
+
+    const deleteAddressDiv = document.createElement('div')
+    deleteAddressDiv.classList.add('more-address')
+    deleteAddressDiv.id = 'removeAddress'
+    const spanDeleteAddress = document.createElement('p')
+    spanDeleteAddress.innerHTML = `<i class="fas fa-trash"></i>`
+    deleteAddressDiv.append(spanDeleteAddress)
+
     moreAddressDiv.append(spanMoreAddress)
 
     data.address.forEach((ad) => {
@@ -88,13 +96,16 @@ async function userData(id) {
       editAddress.append(pointsDiv)
 
       addressBox.append(divLabel, restInfoDiv, editAddress)
-      modalContent.append(addressBox, moreAddressDiv)
+      modalContent.append(addressBox, moreAddressDiv, deleteAddressDiv)
     });
 
     const avatar = document.getElementById('avatar')
     if (data.profilePicture !== "") {
       avatar.src = data.profilePicture
     }
+
+    addNewAddress()
+
   } catch (e) {
     console.error(`Erro ao executar função: ${e}`);
     console.error(`Linha: ${error.stack}`);
@@ -216,3 +227,37 @@ async function editAddress(idElement) {
   }
 }
  
+async function addNewAddress() {
+  const addNewAddressBtn = document.getElementById('addAddress')
+
+  addNewAddressBtn.addEventListener('click', () => {
+  const content = document.querySelector('.modal-edit-address')
+  content.classList.remove('display')
+  
+  const checkBoxLabel = document.querySelector('.address-padrao-label')
+  checkBoxLabel.classList.remove('display')
+
+  const closeBtn = document.querySelector(`.close-edit-btn-address`)
+  closeBtn.addEventListener(`click`, () => {
+    content.classList.add('display')
+    checkBoxLabel.classList.add('display')
+  })
+
+  const submitAction = document.querySelector(`.modal-edit-content-address`)
+  if (!checkBoxLabel.classList.contains(`display`)) {
+    submitAction.addEventListener(`click`, (ev) => {
+      ev.preventDefault()
+      
+    let streetValue = document.getElementById('rua')
+    let numberValue = document.getElementById('number')
+    let labelValue = document.getElementById('label')
+
+    if (streetValue.value !== `` && numberValue.value !== `` && labelValue.value !== ``) {
+      // Enviar novo endereço
+    } else {
+      return
+    }
+    })
+  }
+})
+}

@@ -131,6 +131,7 @@ p#address-for-delivery {
   font-weight: 500;
   padding: 1rem;
   font-weight: 600;
+  overflow: scroll;
 }
 
 .modal-content .delivery-address,
@@ -212,16 +213,22 @@ p#address-for-delivery {
   cursor: pointer;
   border: 2px solid rgb(65, 65, 65);
   transition: var(--animeted-variable);
+  margin-bottom: 0.6rem;
 }
 
-.more-address:hover {
-  background-color: #c8c8c8;
+.more-address#addAddress:hover {
+  background-color: #76d76d;
+}
+
+.more-address#removeAddress:hover {
+  background-color: var(--light-red);
+  color: #f4f5f6;
 }
 
 #address-form label {
   font-size: 1.1rem;
   color: #555;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: start;
   margin-bottom: 0.5rem;
 }
@@ -255,6 +262,33 @@ p#address-for-delivery {
 #address-form .submit-btn:hover {
   background-color: #cc0000;
 }
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff3333;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ff3333;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✔';
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* .user-info-config p {
   background-color: #337ab7;
   color: #f4f5f6;
