@@ -263,30 +263,48 @@ p#address-for-delivery {
   background-color: #cc0000;
 }
 
-input[type="checkbox"] {
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.custom-checkbox {
   appearance: none;
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: 2px solid #ff3333;
-  border-radius: 3px;
+  border-radius: 5px;
   position: relative;
   cursor: pointer;
   outline: none;
+  transition: background-color 0.3s ease;
 }
 
-input[type="checkbox"]:checked {
+.custom-checkbox:checked {
   background-color: #ff3333;
+  border-color: #ff3333;
 }
 
-input[type="checkbox"]:checked::after {
+.custom-checkbox:checked::after {
   content: '✔';
-  font-size: 14px;
+  font-size: 16px;
   color: white;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.custom-checkbox:hover {
+  border-color: #ff6666;
+}
+
+.checkbox-label {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 /* .user-info-config p {

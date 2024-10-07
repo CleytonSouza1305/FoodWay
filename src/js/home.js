@@ -1,3 +1,5 @@
+import { simplifyAddress } from "./funcoes.js"
+
 const userId = localStorage.getItem('id')
 
 async function userData(id) {
@@ -227,14 +229,25 @@ async function editAddress(idElement) {
   }
 }
  
-async function addNewAddress() {
+function addNewAddress() {
   const addNewAddressBtn = document.getElementById('addAddress')
 
   addNewAddressBtn.addEventListener('click', () => {
   const content = document.querySelector('.modal-edit-address')
   content.classList.remove('display')
+
+  let streetValue = document.getElementById('rua')
+  let numberValue = document.getElementById('number')
+  let labelValue = document.getElementById('label')
+
+  streetValue.value = ''
+  numberValue.value = ''
+  labelValue.value = ''
+
   
-  const checkBoxLabel = document.querySelector('.address-padrao-label')
+  // REFORMULAR TODA A FUNÇÃO ABAIXO
+  
+  const checkBoxLabel = document.querySelector('.checkbox-container')
   checkBoxLabel.classList.remove('display')
 
   const closeBtn = document.querySelector(`.close-edit-btn-address`)
@@ -243,20 +256,50 @@ async function addNewAddress() {
     checkBoxLabel.classList.add('display')
   })
 
-  const submitAction = document.querySelector(`.modal-edit-content-address`)
-  if (!checkBoxLabel.classList.contains(`display`)) {
-    submitAction.addEventListener(`click`, (ev) => {
-      ev.preventDefault()
-      
-    let streetValue = document.getElementById('rua')
-    let numberValue = document.getElementById('number')
-    let labelValue = document.getElementById('label')
+  if (streetValue.value !== `` && numberValue.value !== `` && labelValue.value !== ``) {
+    const submitAction = document.querySelector(`.modal-edit-content-address`)
 
-    if (streetValue.value !== `` && numberValue.value !== `` && labelValue.value !== ``) {
-      // Enviar novo endereço
-    } else {
-      return
-    }
+    submitAction.addEventListener(`click`, async (ev) => {
+      ev.preventDefault()
+
+      const url = `http://localhost:3000/users/${userId}`
+      const userData = await fetch(url).then((r) => r.json())
+      const addressData = userData.address
+
+      let lastId = 1
+      if (addressData.length >= 1) {
+        lastId = parseFloat(addressData[addressData.length - 1].id) + 1
+      }
+
+      const chekBoxInput = document.getElementById('checkbox')
+      console.log(chekBoxInput);
+      
+      let addressDefault = false
+
+      if (chekBoxInput.checked) {
+        console.log('checado');
+      }
+
+      const street = streetValue.value
+      const houseNumber = numberValue.value
+
+      const addressApi = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${street}, ${houseNumber}`).then((r) => r.json())
+
+      const shortAddress = simplifyAddress(addressApi[0].display_name)
+      
+      const novoAddress = {
+        id: lastId,
+        label: labelValue.value,
+        latitude: addressApi[0].lat,
+        longitude: addressApi[0].lon,
+        street: shortAddress,
+        house_Number: numberValue.value,
+        isDefault: addressDefault
+      }
+
+      console.log(addressData);
+      console.log(novoAddress);
+
     })
   }
 })
