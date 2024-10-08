@@ -64,7 +64,6 @@ export async function createNewUser(nameInput, emailInput, passwordInput, phoneI
     favorites: [],
     orderHistory: []
   };
-  console.log(user);
 
     const response = await fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -83,7 +82,6 @@ export async function createNewUser(nameInput, emailInput, passwordInput, phoneI
       location.href = 'src/pages/home.html';
     }
     
-    console.log(data);
   } catch (e) {
     console.error(e);
   }

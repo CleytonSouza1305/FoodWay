@@ -247,8 +247,9 @@ p#address-for-delivery {
   border-color: #ff3333;
 }
 
-#address-form .submit-btn {
+#address-form .submit-btn-edit {
   background-color: #ff3333;
+  width: 100%;
   color: #fff;
   border: none;
   padding: 10px;
@@ -259,7 +260,7 @@ p#address-for-delivery {
   margin-bottom: 10px;
 }
 
-#address-form .submit-btn:hover {
+#address-form .submit-btn-edit:hover {
   background-color: #cc0000;
 }
 

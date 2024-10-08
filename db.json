@@ -16,7 +16,7 @@
           "longitude": "-46.6965525",
           "street": "Rua Opção Brasil Natal, Grajaú, São Paulo",
           "house_Number": "09",
-          "isDefault": true
+          "isDefault": false
         },
         {
           "id": 2,
@@ -26,6 +26,15 @@
           "street": "Rua Bocaina de Minas, Jd Tupí",
           "house_Number": "457",
           "isDefault": false
+        },
+        {
+          "id": 3,
+          "label": "trabalho",
+          "latitude": "-21.1575853",
+          "longitude": "-48.9755401",
+          "street": "Rua Tutoia, Residencial Felicidade, Jardim Alpino",
+          "house_Number": "811",
+          "isDefault": true
         }
       ],
       "paymentMethods": [],
