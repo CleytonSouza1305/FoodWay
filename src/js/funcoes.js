@@ -86,3 +86,52 @@ export async function createNewUser(nameInput, emailInput, passwordInput, phoneI
     console.error(e);
   }
 }
+
+// FUNÇÃO QUE CRIA UM NOVO ENDEREÇO
+export async function createNewAddress(street, houseNumber, label, isDefault, userId) {
+  const url = `http://localhost:3000/users/${userId}`
+  const userData = await fetch(url).then((r) => r.json())
+  const addressData = userData.address
+
+  let lastId = 1
+  if (addressData.length >= 1) {
+    lastId = addressData[addressData.length - 1].id + 1
+  }
+
+  addressData.forEach((ad) => {
+    if (isDefault) {
+      ad.isDefault = false
+    }
+  })
+
+  const addressApi = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${street}, ${houseNumber}`).then((r) => r.json())
+
+  const shortAddress = simplifyAddress(addressApi[0].display_name)
+
+  const novoAddress = {
+      id: lastId,
+      label: label,
+      latitude: addressApi[0].lat,
+      longitude: addressApi[0].lon,
+      street: shortAddress,
+      house_Number: houseNumber,
+      isDefault: isDefault
+    }
+
+  addressData.push(novoAddress)
+
+  const response = await fetch('http://localhost:3000/users/' + userId, {
+    method: 'PATCH',
+    body: JSON.stringify({ address: addressData }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const loader = document.querySelector('.content-loader');
+  loader.classList.remove('display');
+
+  if (response.ok) {
+    loader.classList.add('display');
+  }
+}

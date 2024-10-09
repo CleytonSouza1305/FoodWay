@@ -1,4 +1,4 @@
-import { simplifyAddress } from "./funcoes.js"
+import { createNewAddress } from "./funcoes.js"
 
 const userId = localStorage.getItem('id')
 
@@ -28,9 +28,32 @@ async function userData(id) {
 
     moreAddressDiv.append(spanMoreAddress)
 
+    data.address.sort((a, b) => a.id - b.id);
+    const reorganizedData = data.address.map((address, index) => ({
+      ...address,
+      id: index + 1
+    }));
+
     const index = data.address.findIndex((I) => I.isDefault === true)
-    // Criar funcionalidade para deixar o endereço padrão em primeiro no array
-    
+    if (index !== -1) {
+      const [element] = data.address.splice(index, 1);
+      data.address.unshift(element); 
+     } else {
+      reorganizedData[0].isDefault = true
+
+      const response = await fetch('http://localhost:3000/users/' + userId, {
+        method: 'PATCH',
+        body: JSON.stringify({ address: reorganizedData }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        console.log(true);
+      }
+     }
+
     data.address.forEach((ad) => {
       const addressBox = document.createElement('div')
       addressBox.classList.add('box', 'address-box')
@@ -39,6 +62,8 @@ async function userData(id) {
         addressBox.classList.remove('address-box')
         addressBox.classList.add('actual-address')
         addressEl.textContent = ad.street
+      } else {
+
       }
 
       const divLabel = document.createElement('div')
@@ -170,7 +195,6 @@ async function editAddress(idElement) {
   let labelValue = document.getElementById('label')
   addressArray.forEach((ad) => {
     if (ad.id === idElement) {
-      
       streetValue.value = ad.street;
       numberValue.value = ad.house_Number;
       labelValue.value = ad.label;
@@ -266,57 +290,9 @@ function addNewAddress() {
       if (checkbox.checked) {
         isChecked = true
       }
-      createNewAddress(streetValue.value, numberValue.value, labelValue.value, isChecked)
+      createNewAddress(streetValue.value, numberValue.value, labelValue.value, isChecked, userId)
     }
   })
 })
-}
-
-async function createNewAddress(street, houseNumber, label, isDefault) {
-  const url = `http://localhost:3000/users/${userId}`
-  const userData = await fetch(url).then((r) => r.json())
-  const addressData = userData.address
-
-  let lastId = 1
-  if (addressData.length >= 1) {
-    lastId = addressData[addressData.length - 1].id + 1
-  }
-
-  addressData.forEach((ad) => {
-    if (isDefault) {
-      ad.isDefault = false
-    }
-  })
-
-  const addressApi = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${street}, ${houseNumber}`).then((r) => r.json())
-
-  const shortAddress = simplifyAddress(addressApi[0].display_name)
-
-  const novoAddress = {
-      id: lastId,
-      label: label,
-      latitude: addressApi[0].lat,
-      longitude: addressApi[0].lon,
-      street: shortAddress,
-      house_Number: houseNumber,
-      isDefault: isDefault
-    }
-
-  addressData.push(novoAddress)
-
-  const response = await fetch('http://localhost:3000/users/' + userId, {
-    method: 'PATCH',
-    body: JSON.stringify({ address: addressData }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-
-  const loader = document.querySelector('.content-loader');
-  loader.classList.remove('display');
-
-  if (response.ok) {
-    loader.classList.add('display');
-  }
 }
 
