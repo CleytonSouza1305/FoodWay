@@ -1,4 +1,4 @@
-import { createNewAddress } from "./funcoes.js"
+import { createNewAddress, deleteAddress } from "./funcoes.js"
 
 const userId = localStorage.getItem('id')
 
@@ -62,8 +62,6 @@ async function userData(id) {
         addressBox.classList.remove('address-box')
         addressBox.classList.add('actual-address')
         addressEl.textContent = ad.street
-      } else {
-
       }
 
       const divLabel = document.createElement('div')
@@ -125,6 +123,7 @@ async function userData(id) {
       pointsDiv.append(circleUm, circleDois, circleTres)
       editAddress.append(pointsDiv)
 
+      addressBox.id = ad.id
       addressBox.append(divLabel, restInfoDiv, editAddress)
       modalContent.append(addressBox, moreAddressDiv, deleteAddressDiv)
     });
@@ -296,3 +295,7 @@ function addNewAddress() {
 })
 }
 
+const deleteAddressBtn = document.getElementById('removeAddress')
+deleteAddressBtn.addEventListener('click', () => {
+  deleteAddress(userId)
+})

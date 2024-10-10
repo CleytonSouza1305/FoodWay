@@ -135,3 +135,51 @@ export async function createNewAddress(street, houseNumber, label, isDefault, us
     loader.classList.add('display');
   }
 }
+
+export async function deleteAddress(userId) {
+  const content = document.querySelector('.modal');
+  content.classList.add('delete');
+  const textTop = document.querySelector('.delivery-address');
+  const boxes = document.querySelectorAll('.box');
+
+  if (content.classList.contains('delete')) {
+    textTop.innerHTML = 'Selecione o endereço <br> que deseja remover';
+
+    boxes.forEach((box) => {
+      box.classList.add('delete-box');
+    });
+  }
+
+  content.addEventListener('click', (ev) => {
+    const container = ev.target
+    
+    if (container === content) {
+      content.classList.remove('delete');
+      boxes.forEach((box) => {
+      box.classList.remove('delete-box');
+      textTop.innerHTML = 'Endereço de entrega';
+    });
+    }
+  })
+
+  const closebtn = document.querySelector('.close-btn');
+  closebtn.addEventListener('click', () => {
+    content.classList.remove('delete');
+    boxes.forEach((box) => {
+      box.classList.remove('delete-box');
+      textTop.innerHTML = 'Endereço de entrega';
+    });
+  });
+
+  const url = `http://localhost:3000/users/${userId}`
+  const userData = await fetch(url).then((r) => r.json()) 
+  const address = userData.address
+
+  boxes.forEach((box) => {
+    box.addEventListener('click', (el) => {
+      const click = el.currentTarget.id
+      console.log(click);
+      
+    })
+  })
+}
