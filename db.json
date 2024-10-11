@@ -16,7 +16,7 @@
           "longitude": "-48.9755401",
           "street": "Rua Tutoia, Residencial Felicidade, Jardim Alpino",
           "house_Number": "811",
-          "isDefault": false
+          "isDefault": true
         },
         {
           "id": 2,
@@ -35,15 +35,6 @@
           "street": "Rua Tutoia, Residencial Felicidade, Jardim Alpino",
           "house_Number": "811",
           "isDefault": false
-        },
-        {
-          "id": 4,
-          "label": "Casa do meu amor",
-          "latitude": "-23.7561235",
-          "longitude": "-46.7011991",
-          "street": "Rua João Amos Comenius, Vila Jardim São Bernardo, Grajaú",
-          "house_Number": "427",
-          "isDefault": true
         }
       ],
       "paymentMethods": [],

@@ -176,10 +176,30 @@ export async function deleteAddress(userId) {
   const address = userData.address
 
   boxes.forEach((box) => {
-    box.addEventListener('click', (el) => {
+    box.addEventListener('click', async (el) => {
       const click = el.currentTarget.id
-      console.log(click);
+      const index = address.findIndex((i) => i.id === parseFloat(click))
       
+      if (index !== -1) {
+        address.splice(index, 1)
+
+        const response = await fetch('http://localhost:3000/users/' + userId, {
+          method: 'PATCH',
+          body: JSON.stringify({ address }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+    
+        const loader = document.querySelector('.content-loader');
+        loader.classList.remove('display');
+    
+        if (response.ok) {
+          loader.classList.add('display');
+          localStorage.setItem('id', lastId + 1)
+          location.href = 'src/pages/home.html';
+        }
+      }
     })
   })
 }
