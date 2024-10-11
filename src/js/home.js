@@ -1,4 +1,4 @@
-import { createNewAddress, deleteAddress } from "./funcoes.js"
+import { createNewAddress, deleteAddress, simplifyAddress } from "./funcoes.js"
 
 const userId = localStorage.getItem('id')
 
@@ -73,14 +73,14 @@ async function userData(id) {
       labelIcon = labelIcon.charAt(0).toUpperCase() + labelIcon.slice(1);
       if (labelIcon === 'Casa') {
         icon.classList.add('fas', 'fa-house'); 
-    } else if (labelIcon === 'Trabalho') {
-        icon.classList.add('fas', 'fa-building'); 
-    } else {
-        icon.classList.add('fa-solid', 'fa-location-dot'); 
-    }
+      } else if (labelIcon === 'Trabalho') {
+          icon.classList.add('fas', 'fa-building'); 
+      } else {
+          icon.classList.add('fa-solid', 'fa-location-dot'); 
+      }
 
       const restInfoDiv = document.createElement('div')
-     restInfoDiv.classList.add('rest-infos')
+      restInfoDiv.classList.add('rest-infos')
 
       const labelAddress = document.createElement('span')
       labelAddress.classList.add('label-address')
@@ -207,18 +207,22 @@ async function editAddress(idElement) {
 
       const index = addressArray.findIndex((i) => i.id === idElement)
       if (index !== -1) {
+        const street = streetValue.value
+        const houseNumber = numberValue.value
+
+        const addressApi = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${street}, ${houseNumber}`).then((r) => r.json())
+
+        const shortAddress = simplifyAddress(addressApi[0].display_name)
         newAddress = {
           id: ad.id,
           label: labelValue.value,
-          latitude: ad.latitude,
-          longitude: ad.longitude,
-          street: streetValue.value,
+          latitude: addressApi[0].lat,
+          longitude: addressApi[0].lon,
+          street: shortAddress,
           house_Number: numberValue.value,
           isDefault: ad.isDefault
         }
-      } else {
-        return
-      }
+      } 
 
       addressArray[index] = newAddress
       addressData.address = addressArray

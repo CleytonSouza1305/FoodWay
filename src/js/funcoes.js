@@ -136,6 +136,7 @@ export async function createNewAddress(street, houseNumber, label, isDefault, us
   }
 }
 
+// FUNÇÃO QUE DELETA ENDEREÇOS
 export async function deleteAddress(userId) {
   const content = document.querySelector('.modal');
   content.classList.add('delete');
@@ -175,31 +176,35 @@ export async function deleteAddress(userId) {
   const userData = await fetch(url).then((r) => r.json()) 
   const address = userData.address
 
-  boxes.forEach((box) => {
-    box.addEventListener('click', async (el) => {
-      const click = el.currentTarget.id
-      const index = address.findIndex((i) => i.id === parseFloat(click))
+  if (address.length > 1) {
+    boxes.forEach((box) => {
+      box.addEventListener('click', async (el) => {
+        const click = el.currentTarget.id
+        const index = address.findIndex((i) => i.id === parseFloat(click))
+        
+        if (index !== -1) {
+          address.splice(index, 1)
+  
+          const response = await fetch('http://localhost:3000/users/' + userId, {
+            method: 'PATCH',
+            body: JSON.stringify({ address }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
       
-      if (index !== -1) {
-        address.splice(index, 1)
-
-        const response = await fetch('http://localhost:3000/users/' + userId, {
-          method: 'PATCH',
-          body: JSON.stringify({ address }),
-          headers: {
-            'Content-Type': 'application/json'
+          const loader = document.querySelector('.content-loader');
+          loader.classList.remove('display');
+      
+          if (response.ok) {
+            loader.classList.add('display');
+            localStorage.setItem('id', lastId + 1)
+            location.href = 'src/pages/home.html';
           }
-        });
-    
-        const loader = document.querySelector('.content-loader');
-        loader.classList.remove('display');
-    
-        if (response.ok) {
-          loader.classList.add('display');
-          localStorage.setItem('id', lastId + 1)
-          location.href = 'src/pages/home.html';
         }
-      }
+      })
     })
-  })
+  } else {
+    textTop.innerHTML = `Você tem somente ${address.length} endereço, <br> é necessário ter mais de um para remover`
+  }
 }
