@@ -305,6 +305,4 @@ deleteAddressBtn.addEventListener('click', () => {
 })
 
 const profileButton = document.querySelector('.user-info-config')
-profileButton.addEventListener('click', (ev) => {
-  openUserModal(ev)
-})
+profileButton.addEventListener('click', openUserModal)

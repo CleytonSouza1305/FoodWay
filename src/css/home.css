@@ -325,7 +325,6 @@ p#address-for-delivery {
   width: 250px;
   height: auto;
   padding: 1rem 0.3rem;
-  transition: var(--animeted-variable);
 }
 
 .modal-open {
@@ -345,11 +344,14 @@ p#address-for-delivery {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
   cursor: pointer;
   padding: 0.4rem 0.2rem;
   width: 100%;
   box-shadow: inset 0px 0px 0px 2px var(--medio-gray);
+}
+
+.modal-profile ul li i {
+  margin-left: 0.5rem;
 }
 
 .modal-profile ul li p {
@@ -359,6 +361,7 @@ p#address-for-delivery {
   width: 100%;
   font-weight: 500;
   font-size: 0.9rem;
+  margin-left: 0.5rem;
 }
 
 .modal-profile ul li .edit-user-info {

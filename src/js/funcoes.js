@@ -209,15 +209,27 @@ export async function deleteAddress(userId) {
   }
 }
 
-export function openUserModal(evento) {
+export async function openUserModal() {
   const modal = document.querySelector('.modal-profile')
-  modal.classList.remove('display')
-  modal.classList.add('modal-open')
+  modal.classList.toggle('display')
+  modal.classList.toggle('modal-open')
 
-  const avatarImage = document.getElementById('avatar')
+  const data = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`)
+  const user = await data.json()
 
-  if (avatarImage === evento.target) {
-    modal.classList.add('display')
-    modal.classList.remove('modal-open')
+  const nomeDeUser = user.name.split("")
+  const newName = nomeDeUser[0].toUpperCase() + nomeDeUser.slice(1).join("")
+  const userName = document.getElementById('user-name')
+  userName.textContent = newName
+
+  const paymentMethods = user.paymentMethods
+  const profileButtonPayment = document.getElementById('current-payment')
+  const icon = document.querySelector('.method-icon')
+  if (paymentMethods.length === 0) {
+    profileButtonPayment.textContent = 'Adicionar Método de Pagamento'
+    icon.classList.add('fa-solid', 'fa-plus')
+  } else {
+    profileButtonPayment.textContent = 'Alterar Método PadrãoUC089164714'
+    icon.classList.add('fa-solid', 'fa-pencil')
   }
 }
