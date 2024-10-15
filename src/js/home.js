@@ -1,4 +1,4 @@
-import { createNewAddress, deleteAddress, simplifyAddress } from "./funcoes.js"
+import { createNewAddress, deleteAddress, openUserModal, simplifyAddress } from "./funcoes.js"
 
 const userId = localStorage.getItem('id')
 
@@ -302,4 +302,9 @@ function addNewAddress() {
 const deleteAddressBtn = document.getElementById('removeAddress')
 deleteAddressBtn.addEventListener('click', () => {
   deleteAddress(userId)
+})
+
+const profileButton = document.querySelector('.user-info-config')
+profileButton.addEventListener('click', (ev) => {
+  openUserModal(ev)
 })

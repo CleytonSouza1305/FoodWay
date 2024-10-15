@@ -317,6 +317,55 @@ p#address-for-delivery {
   color: #333;
 }
 
+.modal-profile {
+  position: fixed;
+  top: 12%;
+  right: -300px;
+  background-color: rgb(249, 249, 249);
+  width: 250px;
+  height: auto;
+  padding: 1rem 0.3rem;
+  transition: var(--animeted-variable);
+}
+
+.modal-open {
+  right: 10px;
+}
+
+.modal-profile ul {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-radius: 4px;
+}
+
+.modal-profile ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0.2rem;
+  width: 100%;
+  box-shadow: inset 0px 0px 0px 2px var(--medio-gray);
+}
+
+.modal-profile ul li p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.modal-profile ul li .edit-user-info {
+  border: none;
+  background-color: transparent;
+  font-size: 0.9rem;
+}
 /* .user-info-config p {
   background-color: #337ab7;
   color: #f4f5f6;

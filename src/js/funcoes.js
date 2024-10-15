@@ -208,3 +208,16 @@ export async function deleteAddress(userId) {
     textTop.innerHTML = `Você tem somente ${address.length} endereço, <br> é necessário ter mais de um para remover`
   }
 }
+
+export function openUserModal(evento) {
+  const modal = document.querySelector('.modal-profile')
+  modal.classList.remove('display')
+  modal.classList.add('modal-open')
+
+  const avatarImage = document.getElementById('avatar')
+
+  if (avatarImage === evento.target) {
+    modal.classList.add('display')
+    modal.classList.remove('modal-open')
+  }
+}
