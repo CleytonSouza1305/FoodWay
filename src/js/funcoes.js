@@ -228,8 +228,12 @@ export async function openUserModal() {
   if (paymentMethods.length === 0) {
     profileButtonPayment.textContent = 'Adicionar Método de Pagamento'
     icon.classList.add('fa-solid', 'fa-plus')
-  } else {
-    profileButtonPayment.textContent = 'Alterar Método PadrãoUC089164714'
+    const morePayment = document.querySelector('.more-payment')
+    morePayment.addEventListener('click', () => {
+      const modal = document.querySeler('.')
+    })
+  } else if (paymentMethods.length >= 1) {
+    profileButtonPayment.textContent = 'Alterar Método Padrão'
     icon.classList.add('fa-solid', 'fa-pencil')
   }
 }
