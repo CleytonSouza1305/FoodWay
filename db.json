@@ -28,7 +28,22 @@
           "isDefault": false
         }
       ],
-      "paymentMethods": [],
+      "paymentMethods": [
+        {
+          "id": 1,
+          "type": "Cartão de Crédito",
+          "cardNumber": "**** **** 1234",
+          "expiryDate": "12/25",
+          "cardName": "Cleyton J C Souza",
+          "isDefault": true
+        },
+        {
+          "id": 2,
+          "type": "Pix",
+          "pixKey": "bigcleyton@gmail.com",
+          "isDefault": false
+        }
+      ],
       "favorites": [],
       "orderHistory": []
     },

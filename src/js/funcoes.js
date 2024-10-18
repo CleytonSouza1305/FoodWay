@@ -223,17 +223,23 @@ export async function openUserModal() {
   userName.textContent = newName
 
   const paymentMethods = user.paymentMethods
+  
   const profileButtonPayment = document.getElementById('current-payment')
   const icon = document.querySelector('.method-icon')
+  const morePayment = document.querySelector('.more-payment')
   if (paymentMethods.length === 0) {
     profileButtonPayment.textContent = 'Adicionar Método de Pagamento'
     icon.classList.add('fa-solid', 'fa-plus')
-    const morePayment = document.querySelector('.more-payment')
-    morePayment.addEventListener('click', () => {
-      const modal = document.querySeler('.')
-    })
+      alert('chamar a função para criar um método')
   } else if (paymentMethods.length >= 1) {
-    profileButtonPayment.textContent = 'Alterar Método Padrão'
+    profileButtonPayment.textContent = 'Alterar Método de Pagamento'
     icon.classList.add('fa-solid', 'fa-pencil')
+    // FUÇÃO QUE VAI ALTERAR O MÉTODO PADRÃO E RECARREGAR OS DADOS
   }
+}
+
+async function renderPaymentMethods() {
+  const data = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`)
+  const user = await data.json()
+  
 }
