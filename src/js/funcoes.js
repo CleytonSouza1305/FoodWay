@@ -234,12 +234,126 @@ export async function openUserModal() {
   } else if (paymentMethods.length >= 1) {
     profileButtonPayment.textContent = 'Alterar Método de Pagamento'
     icon.classList.add('fa-solid', 'fa-pencil')
-    // FUÇÃO QUE VAI ALTERAR O MÉTODO PADRÃO E RECARREGAR OS DADOS
+    morePayment.addEventListener('click', () => {
+      const modal = document.querySelector('.switch-method-modal')
+      modal.classList.remove('display')
+      if (modal) {
+        const modalProfile = document.querySelector('.modal-profile')
+        modalProfile.classList.toggle('display')
+        modalProfile.classList.toggle('modal-open')
+        const closeBtn = document.querySelector('.back-btn')
+        closeBtn.addEventListener('click', () => {
+          modal.classList.add('display')
+        })
+        modal.addEventListener('click', (el) => {
+          if (el.target === modal) {
+            modal.classList.add('display')
+          }
+        })
+      }
+
+      renderPaymentMethods()
+    })
   }
 }
 
 async function renderPaymentMethods() {
-  const data = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`)
-  const user = await data.json()
-  
+  const data = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`).then((r) => r.json())
+
+  const userPayment = data.paymentMethods
+
+  const modalContent = document.querySelector('.content-methods')
+  userPayment.forEach((pay) => {
+    const addressBox = document.createElement('div')
+    addressBox.classList.add('box', 'address-box')
+
+    if (pay.isDefault) {
+      addressBox.classList.remove('address-box')
+      addressBox.classList.add('actual-address')
+    }
+
+    const divLabel = document.createElement('div')
+    divLabel.classList.add('label-icon')
+    const icon = document.createElement('i')
+    icon.classList.add('icon')
+    divLabel.append(icon)
+    let payType = pay.type
+
+    const card = document.createElement('span')
+    const cardName = document.createElement('span')
+    const expiryDate = document.createElement('span')
+
+    payType = payType.charAt(0).toUpperCase() + payType.slice(1);
+    if (payType === 'Cartão de crédito') {
+      icon.classList.add('fa-solid', 'fa-credit-card'); 
+      card.classList.add('street')
+      card.textContent = pay.cardNumber
+
+      cardName.classList.add('number-house')
+      cardName.textContent = pay.cardName  
+
+      expiryDate.classList.add('city')
+      expiryDate.textContent = pay.expiryDate
+    } else if (payType === 'Pix') {
+      icon.classList.add('fa-brands', 'fa-pix'); 
+
+      card.classList.add('street')
+      card.textContent = pay.pixKey
+    } else if (payType === 'Cartão de débito') {
+      icon.classList.add('fa-regular', 'fa-credit-card');
+
+      card.classList.add('street')
+      card.textContent = pay.cardNumber 
+
+      cardName.classList.add('number-house')
+      cardName.textContent = pay.cardName 
+      
+      expiryDate.classList.add('city')
+      expiryDate.textContent = pay.expiryDate
+    } else if (payType === 'Dinheiro') {
+      icon.classList.add('fa-solid', 'fa-sack-dollar'); 
+
+      card.classList.add('street')
+      card.textContent = 'Pagar na entrega' 
+    } else {
+      icon.classList.add('fa-solid', 'fa-coins'); 
+      
+      card.classList.add('street')
+      card.textContent = 'Pagar na entrega' 
+    }
+
+    const restInfoDiv = document.createElement('div')
+    restInfoDiv.classList.add('rest-infos')
+
+    const labelPayment = document.createElement('span')
+    labelPayment.classList.add('label-address')
+    const labelToUpper = pay.type.charAt(0).toUpperCase() + pay.type.slice(1).toLowerCase();
+    labelPayment.textContent = labelToUpper + ':'
+
+    restInfoDiv.append(payType, card, cardName, expiryDate)
+    
+    const editAddress = document.createElement('div')
+    editAddress.classList.add('edit-address')
+    editAddress.id = pay.id
+    const circleUm = document.createElement('i')
+    circleUm.classList.add('fas', 'fa-circle')
+    const circleDois = document.createElement('i')
+    circleDois.classList.add('fas', 'fa-circle')
+    const circleTres = document.createElement('i')
+    circleTres.classList.add('fas', 'fa-circle')
+    const pointsDiv = document.createElement('div')
+    pointsDiv.classList.add('pontinhos')
+    pointsDiv.id = pay.id
+    circleUm.id = pay.id
+    circleDois.id = pay.id
+    circleTres.id = pay.id
+    pointsDiv.append(circleUm, circleDois, circleTres)
+    editAddress.append(pointsDiv)
+
+    addressBox.id = pay.id
+    addressBox.append(divLabel, restInfoDiv, editAddress)
+    modalContent.append(addressBox, moreAddressDiv, deleteAddressDiv)
+  });
+
+  console.log(userPayment);
 }
