@@ -31,16 +31,35 @@
       "paymentMethods": [
         {
           "id": 1,
-          "type": "Cartão de Crédito",
+          "type": "Cartão de crédito",
           "cardNumber": "**** **** 1234",
           "expiryDate": "12/25",
           "cardName": "Cleyton J C Souza",
+          "cvv": "556",
+          "bank": "itaú",
           "isDefault": true
         },
         {
           "id": 2,
           "type": "Pix",
           "pixKey": "bigcleyton@gmail.com",
+          "pixKeyType": "email",
+          "bank": "nubank",
+          "isDefault": false
+        },
+        {
+          "id": 3,
+          "type": "Cartão de débito",
+          "cardNumber": "**** **** 9876",
+          "expiryDate": "12/30",
+          "cardName": "Cleyton J C Souza",
+          "cvv": "008",
+          "bank": "picpay",
+          "isDefault": false
+        },
+        {
+          "id": 4,
+          "type": "Dinheiro",
           "isDefault": false
         }
       ],

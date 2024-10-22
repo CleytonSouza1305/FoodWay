@@ -137,10 +137,9 @@ p#address-for-delivery {
 }
 
 .modal-content .delivery-address,
-.edit-address,
 .p-method {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .box {
@@ -150,6 +149,7 @@ p#address-for-delivery {
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   border-radius: 4px;
+  gap: 2rem;
 }
 
 .actual-address {
@@ -181,6 +181,10 @@ p#address-for-delivery {
   font-size: 1.4rem;
 }
 
+.bank-svg {
+  width: 35px;
+}
+
 .pontinhos {
   display: flex;
   flex-direction: column; 
@@ -193,6 +197,7 @@ p#address-for-delivery {
 
 .rest-infos .street {
   width: 250px;
+  text-align: start;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden; 

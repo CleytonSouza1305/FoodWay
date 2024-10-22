@@ -251,13 +251,11 @@ export async function openUserModal() {
           }
         })
       }
-
-      renderPaymentMethods()
     })
   }
 }
 
-async function renderPaymentMethods() {
+export async function renderPaymentMethods() {
   const data = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`).then((r) => r.json())
 
   const userPayment = data.paymentMethods
@@ -282,9 +280,34 @@ async function renderPaymentMethods() {
     const card = document.createElement('span')
     const cardName = document.createElement('span')
     const expiryDate = document.createElement('span')
+    const bankSvg = document.createElement('img')
+    bankSvg.classList.add('bank-svg')
 
-    payType = payType.charAt(0).toUpperCase() + payType.slice(1);
-    if (payType === 'Cartão de crédito') {
+    payType = payType.charAt(0).toUpperCase() + payType.slice(1) + ':';
+
+    const restInfoDiv = document.createElement('div')
+    restInfoDiv.classList.add('rest-infos')
+
+    const bank = pay.bank
+    if (bank === 'nubank') {
+      bankSvg.src = 'https://www.svgrepo.com/show/504674/nubank.svg'
+    } else if (bank === 'itaú') {
+      bankSvg.src = 'https://www.svgrepo.com/show/504494/itau.svg'
+    } else if (bank === 'santander') {
+      bankSvg.src = 'https://www.svgrepo.com/show/519070/santander.svg'
+    } else if (bank === 'banco do brasil') {
+      bankSvg.src = 'https://seeklogo.com/images/B/banco-do-brasil-logo-18CB9EBFB7-seeklogo.com.png'
+    } else if (bank === 'picpay') {
+      bankSvg.src = 'https://www.svgrepo.com/show/504739/picpay.svg'
+    } else if (bank === 'mercado pago') {
+      bankSvg.src = 'https://www.svgrepo.com/show/517750/mercado-pago.svg'
+    } else if (bank === 'caixa') {
+      bankSvg.src = 'https://www.svgrepo.com/show/515233/caixa.svg'
+    } else if (bank === 'bradesco') {
+      bankSvg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_U9N1F9yzQ-b9oIxBnu6CJVbZ87LVIobTdeWBUqeNPJ3pHu41qQWHdSRMrPidUZukhpw&usqp=CAU'
+    } 
+
+    if (payType === 'Cartão de crédito:') {
       icon.classList.add('fa-solid', 'fa-credit-card'); 
       card.classList.add('street')
       card.textContent = pay.cardNumber
@@ -293,44 +316,55 @@ async function renderPaymentMethods() {
       cardName.textContent = pay.cardName  
 
       expiryDate.classList.add('city')
-      expiryDate.textContent = pay.expiryDate
-    } else if (payType === 'Pix') {
+      expiryDate.textContent = 'Vencimento: ' + pay.expiryDate
+
+      restInfoDiv.append(payType, card, cardName, expiryDate, bankSvg)
+    } else if (payType === 'Pix:') {
+      const pixType = document.createElement('span')
+
       icon.classList.add('fa-brands', 'fa-pix'); 
 
       card.classList.add('street')
-      card.textContent = pay.pixKey
-    } else if (payType === 'Cartão de débito') {
+      card.textContent = 'Chave: ' + pay.pixKey 
+
+      let key = pay.pixKeyType
+      key = key.charAt(0).toUpperCase() + key.slice(1);
+      pixType.textContent = 'Tipo da chave: ' + '"' + key + '"'
+
+      restInfoDiv.append(payType, card, pixType, bankSvg)
+    } else if (payType === 'Cartão de débito:') {
       icon.classList.add('fa-regular', 'fa-credit-card');
 
       card.classList.add('street')
-      card.textContent = pay.cardNumber 
+      card.textContent = pay.cardNumber
 
       cardName.classList.add('number-house')
-      cardName.textContent = pay.cardName 
-      
+      cardName.textContent = pay.cardName  
+
       expiryDate.classList.add('city')
-      expiryDate.textContent = pay.expiryDate
-    } else if (payType === 'Dinheiro') {
+      expiryDate.textContent = 'Vencimento: ' + pay.expiryDate
+
+      restInfoDiv.append(payType, card, cardName, expiryDate, bankSvg)
+    } else if (payType === 'Dinheiro:') {
       icon.classList.add('fa-solid', 'fa-sack-dollar'); 
 
       card.classList.add('street')
       card.textContent = 'Pagar na entrega' 
+      
+      restInfoDiv.append(payType, card)
     } else {
       icon.classList.add('fa-solid', 'fa-coins'); 
-      
+
       card.classList.add('street')
       card.textContent = 'Pagar na entrega' 
-    }
 
-    const restInfoDiv = document.createElement('div')
-    restInfoDiv.classList.add('rest-infos')
+      restInfoDiv.append(payType, card)
+    }
 
     const labelPayment = document.createElement('span')
     labelPayment.classList.add('label-address')
     const labelToUpper = pay.type.charAt(0).toUpperCase() + pay.type.slice(1).toLowerCase();
     labelPayment.textContent = labelToUpper + ':'
-
-    restInfoDiv.append(payType, card, cardName, expiryDate)
     
     const editAddress = document.createElement('div')
     editAddress.classList.add('edit-address')
@@ -352,7 +386,7 @@ async function renderPaymentMethods() {
 
     addressBox.id = pay.id
     addressBox.append(divLabel, restInfoDiv, editAddress)
-    modalContent.append(addressBox, moreAddressDiv, deleteAddressDiv)
+    modalContent.append(addressBox)
   });
 
   console.log(userPayment);
