@@ -1,4 +1,4 @@
-import { createNewAddress, deleteAddress, openUserModal, renderPaymentMethods, simplifyAddress } from "./funcoes.js"
+import { createNewAddress, deleteAddress, deletePayment, openUserModal, renderPaymentMethods, simplifyAddress } from "./funcoes.js"
 
 const userId = localStorage.getItem('id')
 
@@ -308,3 +308,4 @@ const profileButton = document.querySelector('.user-info-config')
 profileButton.addEventListener('click', openUserModal)
 
 renderPaymentMethods()
+

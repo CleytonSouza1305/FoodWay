@@ -242,6 +242,15 @@ p#address-for-delivery {
   color: #f4f5f6;
 }
 
+.more-address#add-payment:hover {
+  background-color: #76d76d;
+}
+
+.more-address#remove-payment:hover {
+  background-color: var(--light-red);
+  color: #f4f5f6;
+}
+
 #address-form label {
   font-size: 1.1rem;
   color: #555;

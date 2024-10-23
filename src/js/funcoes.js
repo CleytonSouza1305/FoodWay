@@ -232,6 +232,12 @@ export async function openUserModal() {
     morePayment.addEventListener('click', () => {
       const modal = document.querySelector('.switch-method-modal')
       modal.classList.remove('display')
+
+      const removePayment = document.getElementById('remove-payment')
+      removePayment.addEventListener('click', () => {
+        deletePayment(localStorage.getItem('id'))
+      })
+
       if (modal) {
         const modalProfile = document.querySelector('.modal-profile')
         modalProfile.classList.toggle('display')
@@ -256,9 +262,24 @@ export async function renderPaymentMethods() {
   const userPayment = data.paymentMethods
 
   const modalContent = document.querySelector('.content-methods')
+
+  const morePaymentBtn = document.createElement('div')
+  morePaymentBtn.classList.add('more-address')
+  morePaymentBtn.id = 'add-payment'
+  const spanMoreAddress = document.createElement('p')
+  spanMoreAddress.innerHTML = `<i class="fas fa-plus"></i>`
+  morePaymentBtn.append(spanMoreAddress)
+
+  const deletePaymentBtn = document.createElement('div')
+  deletePaymentBtn.classList.add('more-address')
+  deletePaymentBtn.id = 'remove-payment'
+  const spanDeleteAddress = document.createElement('p')
+  spanDeleteAddress.innerHTML = `<i class="fas fa-trash"></i>`
+  deletePaymentBtn.append(spanDeleteAddress)
+
   userPayment.forEach((pay) => {
     const addressBox = document.createElement('div')
-    addressBox.classList.add('box', 'address-box')
+    addressBox.classList.add('box', 'address-box', 'box-payment')
 
     if (pay.isDefault) {
       addressBox.classList.remove('address-box')
@@ -381,6 +402,74 @@ export async function renderPaymentMethods() {
 
     addressBox.id = pay.id
     addressBox.append(divLabel, restInfoDiv, editAddress)
-    modalContent.append(addressBox)
+    modalContent.append(addressBox, morePaymentBtn, deletePaymentBtn)
   })
 }
+
+export async function deletePayment(userId) {
+  const content = document.querySelector('.switch-method-modal');
+  content.classList.add('delete');
+  const textTop = document.querySelector('.delivery-address');
+  const boxes = document.querySelectorAll('.box-payment');
+
+  const url = `http://localhost:3000/users/${userId}`;
+  const userData = await fetch(url).then((r) => r.json());
+  const payment = userData.paymentMethods;
+
+  const handleBoxClick = async (el) => {
+    const click = el.currentTarget.id;
+    const index = payment.findIndex((i) => i.id === parseFloat(click));
+    
+    if (index !== -1) {
+      payment.splice(index, 1);
+      
+      const response = await fetch(`http://localhost:3000/users/${userId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ paymentMethods }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      const loader = document.querySelector('.content-loader');
+      loader.classList.remove('display');
+      
+      if (response.ok) {
+        loader.classList.add('display');
+        localStorage.setItem('id', lastId + 1);
+      }
+    }
+  };
+
+  const closeModal = () => {
+    content.classList.remove('delete');
+    boxes.forEach((box) => {
+      box.classList.remove('delete-box');
+      textTop.innerHTML = 'Endereço de entrega';
+      box.removeEventListener('click', handleBoxClick);
+    });
+  };
+
+  if (content.classList.contains('delete')) {
+    textTop.innerHTML = 'Selecione o método <br> que deseja remover';
+
+    if (payment.length > 1) {
+      boxes.forEach((box) => {
+        box.classList.add('delete-box');
+        box.addEventListener('click', handleBoxClick);
+      });
+    } else {
+      textTop.innerHTML = `Você tem somente ${payment.length} endereço, <br> é necessário ter mais de um para remover`;
+    }
+  }
+
+  content.addEventListener('click', (ev) => {
+    if (ev.target === content) {
+      closeModal();
+    }
+  });
+
+  const closebtn = document.querySelector('.close-btn');
+  closebtn.addEventListener('click', closeModal);
+}
+
