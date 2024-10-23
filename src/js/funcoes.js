@@ -143,70 +143,65 @@ export async function deleteAddress(userId) {
   const textTop = document.querySelector('.delivery-address');
   const boxes = document.querySelectorAll('.box');
 
-  if (content.classList.contains('delete')) {
-    textTop.innerHTML = 'Selecione o endereço <br> que deseja remover';
-
-    boxes.forEach((box) => {
-      box.classList.add('delete-box');
-    });
-  }
-
-  content.addEventListener('click', (ev) => {
-    const container = ev.target
+  const handleBoxClick = async (el) => {
+    const click = el.currentTarget.id;
+    const index = address.findIndex((i) => i.id === parseFloat(click));
     
-    if (container === content) {
-      content.classList.remove('delete');
-      boxes.forEach((box) => {
-      box.classList.remove('delete-box');
-      textTop.innerHTML = 'Endereço de entrega';
-    });
+    if (index !== -1) {
+      address.splice(index, 1);
+      
+      const response = await fetch(`http://localhost:3000/users/${userId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ address }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      const loader = document.querySelector('.content-loader');
+      loader.classList.remove('display');
+      
+      if (response.ok) {
+        loader.classList.add('display');
+        localStorage.setItem('id', lastId + 1);
+      }
     }
-  })
+  };
 
-  const closebtn = document.querySelector('.close-btn');
-  closebtn.addEventListener('click', () => {
+  const closeModal = () => {
     content.classList.remove('delete');
     boxes.forEach((box) => {
       box.classList.remove('delete-box');
       textTop.innerHTML = 'Endereço de entrega';
+      box.removeEventListener('click', handleBoxClick);
     });
+  };
+
+  if (content.classList.contains('delete')) {
+    const url = `http://localhost:3000/users/${userId}`;
+    const userData = await fetch(url).then((r) => r.json());
+    const address = userData.address;
+
+    textTop.innerHTML = 'Selecione o endereço <br> que deseja remover';
+
+    if (address.length > 1) {
+      boxes.forEach((box) => {
+        box.classList.add('delete-box');
+        box.addEventListener('click', handleBoxClick);
+      });
+    } else {
+      textTop.innerHTML = `Você tem somente ${address.length} endereço, <br> é necessário ter mais de um para remover`;
+    }
+  }
+
+  content.addEventListener('click', (ev) => {
+    if (ev.target === content) {
+      closeModal();
+    }
   });
 
-  const url = `http://localhost:3000/users/${userId}`
-  const userData = await fetch(url).then((r) => r.json()) 
-  const address = userData.address
-
-  if (address.length > 1) {
-    boxes.forEach((box) => {
-      box.addEventListener('click', async (el) => {
-        const click = el.currentTarget.id
-        const index = address.findIndex((i) => i.id === parseFloat(click))
-        
-        if (index !== -1) {
-          address.splice(index, 1)
-  
-          const response = await fetch('http://localhost:3000/users/' + userId, {
-            method: 'PATCH',
-            body: JSON.stringify({ address }),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-      
-          const loader = document.querySelector('.content-loader');
-          loader.classList.remove('display');
-      
-          if (response.ok) {
-            loader.classList.add('display');
-            localStorage.setItem('id', lastId + 1)
-            location.href = 'src/pages/home.html';
-          }
-        }
-      })
-    })
-  } else {
-    textTop.innerHTML = `Você tem somente ${address.length} endereço, <br> é necessário ter mais de um para remover`
-  }
+  const closebtn = document.querySelector('.close-btn');
+  closebtn.addEventListener('click', closeModal);
 }
 
 export async function openUserModal() {
@@ -387,7 +382,5 @@ export async function renderPaymentMethods() {
     addressBox.id = pay.id
     addressBox.append(divLabel, restInfoDiv, editAddress)
     modalContent.append(addressBox)
-  });
-
-  console.log(userPayment);
+  })
 }
