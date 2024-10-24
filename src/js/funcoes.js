@@ -143,6 +143,10 @@ export async function deleteAddress(userId) {
   const textTop = document.querySelector('.delivery-address');
   const boxes = document.querySelectorAll('.box');
 
+  const url = `http://localhost:3000/users/${userId}`;
+  const userData = await fetch(url).then((r) => r.json());
+  const address = userData.address;
+
   const handleBoxClick = async (el) => {
     const click = el.currentTarget.id;
     const index = address.findIndex((i) => i.id === parseFloat(click));
@@ -163,7 +167,6 @@ export async function deleteAddress(userId) {
       
       if (response.ok) {
         loader.classList.add('display');
-        localStorage.setItem('id', lastId + 1);
       }
     }
   };
@@ -178,9 +181,6 @@ export async function deleteAddress(userId) {
   };
 
   if (content.classList.contains('delete')) {
-    const url = `http://localhost:3000/users/${userId}`;
-    const userData = await fetch(url).then((r) => r.json());
-    const address = userData.address;
 
     textTop.innerHTML = 'Selecione o endereço <br> que deseja remover';
 
@@ -418,6 +418,7 @@ export async function deletePayment(userId) {
 
   const handleBoxClick = async (el) => {
     const click = el.currentTarget.id;
+    
     const index = payment.findIndex((i) => i.id === parseFloat(click));
     
     if (index !== -1) {
@@ -425,7 +426,7 @@ export async function deletePayment(userId) {
       
       const response = await fetch(`http://localhost:3000/users/${userId}`, {
         method: 'PATCH',
-        body: JSON.stringify({ paymentMethods }),
+        body: JSON.stringify({ paymentMethods: payment }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -436,7 +437,6 @@ export async function deletePayment(userId) {
       
       if (response.ok) {
         loader.classList.add('display');
-        localStorage.setItem('id', lastId + 1);
       }
     }
   };
